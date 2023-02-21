@@ -1,6 +1,7 @@
 """CSV file reader."""
 
 from csv import reader
+from logging import getLogger
 from pathlib import Path
 from typing import Iterator
 
@@ -12,6 +13,9 @@ from dsla.study import Study
 from dsla.summary import Summary
 from dsla.system_usability_scale import SystemUsabilityScale
 from dsla.task import Task
+
+
+LOGGER = getLogger('parser')
 
 
 def read(file: Path):
@@ -66,7 +70,8 @@ def read_records(file: Path) -> Iterator[list[str]]:
     """Yields CSV records of the given file."""
 
     with file.open('r', encoding='utf-8') as file_handler:
-        for record in reader(file_handler):
+        for line, record in enumerate(reader(file_handler), start=1):
+            LOGGER.debug('#%i: %s', line, record)
             yield record
 
 
