@@ -2,6 +2,7 @@
 
 from argparse import ArgumentParser, Namespace
 from logging import DEBUG, INFO, basicConfig
+from operator import not_
 from pathlib import Path
 
 from dsla.reader import read
@@ -28,6 +29,15 @@ def main():
         participant_data = ParticipantData.from_items(read(file))
         print(participant_data)
         print('Runs:', len(participant_data.runs))
+
+        for run in participant_data.runs:
+            print('Selection method:', run.selection_method)
+            print('Training runs:', len(run.training))
+            print('Study runs:', len(run.tasks))
+            for task in run.tasks:
+                print('Dataset:', task.dataset)
+                print('Correct:', sum(task.correct))
+                print('Wrong:', sum(map(not_, task.correct)))
 
 
 if __name__ == '__main__':
