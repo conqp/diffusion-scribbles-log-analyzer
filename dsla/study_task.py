@@ -2,6 +2,7 @@
 
 from typing import NamedTuple
 
+from dsla.classification import Classification, CorrectClassifications
 from dsla.event import Event
 from dsla.summary import Summary
 
@@ -14,5 +15,5 @@ class StudyTask(NamedTuple):
 
     events: list[Event]
     summary: Summary
-    classification: list[int]
-    correct: list[int]
+    classification: Classification
+    correct: CorrectClassifications

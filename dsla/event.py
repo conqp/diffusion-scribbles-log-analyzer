@@ -26,10 +26,10 @@ class Event:
     def from_csv(cls, record: Iterable[str]) -> Event:
         """Create an event from the respective CSV record."""
         timestamp, typ, *additional_fields = record
-        return EVENTS[typ](
+        return (clas := EVENTS[typ])(
             time.fromisoformat(timestamp),
             typ,
-            *cls.parse_additional_fields(*additional_fields)
+            *clas.parse_additional_fields(*additional_fields)
         )
 
     @classmethod
@@ -100,6 +100,7 @@ class CoordinateEvent(Event):
 
     @classmethod
     def parse_additional_fields(cls, x: str, y: str) -> tuple[Coordinates]:
+        print('CALLED')
         return Coordinates.from_strings(x, y),
 
 

@@ -17,5 +17,7 @@ class RGB(NamedTuple):
     @classmethod
     def from_string(cls, text: str) -> RGB:
         """Create an RGB color from a string tuple."""
-        red, green, blue = text.lstrip('(').rstrip(')').split(',')
+        red, green, blue = map(
+            str.strip, text.lstrip('(').rstrip(')').split(',')
+        )
         return cls(int(red), int(green), int(blue))

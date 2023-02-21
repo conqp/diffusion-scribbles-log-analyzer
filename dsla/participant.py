@@ -22,12 +22,12 @@ class Participant(NamedTuple):
     scatter_plot_experience: int
 
     @classmethod
-    def from_record(cls, record: str, *, sep: str = ',') -> Participant:
+    def from_csv(cls, record: list[str]) -> Participant:
         """Create a new Participant from a CSV record."""
         (
             age, gender, corrected_vision, normal_vision, computer_experience,
             data_visualization_experience, scatter_plot_experience
-        ) = record.split(sep)
+        ) = record
         return cls(
             int(age),
             Gender.from_string(gender),
