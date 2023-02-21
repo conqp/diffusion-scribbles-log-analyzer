@@ -10,8 +10,9 @@ class Dataset(str, Enum):
     """Available datasets."""
 
     # Training
+    PERSONAL_HIKING_DATA = '7_personalHikingData'
     R15 = '10_R15'
-
+    SIMPLIFIED_IRIS = '12_simplified.iris.data.set'
     # Study
     GAUSSIAN = '1_Gaussian'
     PATH_BASED = '2_pathbased'
