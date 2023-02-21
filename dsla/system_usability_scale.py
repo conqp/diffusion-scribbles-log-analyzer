@@ -19,3 +19,4 @@ class SystemUsabilityScale(NamedTuple):
     cumbersome: int
     confident: int
     much_learning_required: int
+    score: float

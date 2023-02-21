@@ -15,3 +15,4 @@ class NASA_TLX(NamedTuple):
     performance: int
     effort: int
     frustration: int
+    score: float
