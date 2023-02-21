@@ -1,9 +1,10 @@
 """A Training task."""
 
-from dsla.event import Event
+from dsla.task import Task
 
 
 __all__ = ['TrainingTask']
 
 
-TrainingTask = list[Event]
+class TrainingTask(Task):
+    """A training task."""

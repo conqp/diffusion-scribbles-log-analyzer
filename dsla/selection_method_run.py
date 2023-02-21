@@ -56,7 +56,7 @@ def filter_study_tasks(items: list[Any]) -> Iterator[StudyTask]:
 
     for item in items:
         if isinstance(item, Task) and isinstance(item[0], TaskStart):
-            events = list(item)
+            events = item
 
         if events is not None:
             if summary is None and isinstance(item, Summary):
