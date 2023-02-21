@@ -18,4 +18,12 @@ class SelectionMethod(str, Enum):
     @classmethod
     def from_string(cls, text: str) -> SelectionMethod:
         """Create a SelectionMethod from the given text."""
-        return cls(text.split()[0].lower())
+        try:
+            return cls(name := text.split()[0].lower())
+        except ValueError:
+            return ALIASES[name]
+
+
+ALIASES = {
+    'lasso-selection': SelectionMethod.LASSO
+}
