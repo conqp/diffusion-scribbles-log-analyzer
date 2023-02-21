@@ -5,6 +5,7 @@ from logging import DEBUG, INFO, basicConfig
 from pathlib import Path
 
 from dsla.reader import read
+from dsla.participant_data import ParticipantData
 
 
 def get_args(description: str = __doc__) -> Namespace:
@@ -24,9 +25,9 @@ def main():
 
     for file in args.file:
         print('Parsing file:', file)
-
-        for item in read(file):
-            print(item)
+        participant_data = ParticipantData.from_items(read(file))
+        print(participant_data)
+        print('Runs:', len(participant_data.runs))
 
 
 if __name__ == '__main__':

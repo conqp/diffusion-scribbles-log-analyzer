@@ -54,9 +54,7 @@ def read(file: Path):
                 int(item) if item else None for item in next(records)
             )
         elif keyword == 'Correct ...':
-            yield CorrectClassifications(
-                int(item) if item else None for item in next(records)
-            )
+            yield CorrectClassifications(map(bool, map(int, next(records))))
         elif keyword == 'QUESTIONS SUS':
             yield parse_sus(records)
         elif keyword == 'QUESTIONS TLX':
@@ -111,7 +109,7 @@ def parse_sus(records: Iterator[list[str]]) -> SystemUsabilityScale:
     return SystemUsabilityScale.from_csvs(raw, weighted, score)
 
 
-def parse_nasa_tlx(records: Iterator[list[str]]) -> Iterator[NASA_TLX]:
+def parse_nasa_tlx(records: Iterator[list[str]]) -> NASA_TLX:
     """Parse NASA TLX questionnaires."""
 
     next(records)  # Discard CSV header.
