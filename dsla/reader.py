@@ -50,9 +50,13 @@ def read(file: Path):
             next(records)     # Discard CSV header.
             yield Summary.from_csv(next(records))
         elif keyword == 'Classification ...':
-            yield Classification(map(int, next(records)))
+            yield Classification(
+                int(item) if item else None for item in next(records)
+            )
         elif keyword == 'Correct ...':
-            yield CorrectClassifications(map(int, next(records)))
+            yield CorrectClassifications(
+                int(item) if item else None for item in next(records)
+            )
         elif keyword == 'QUESTIONS SUS':
             yield parse_sus(records)
         elif keyword == 'QUESTIONS TLX':
@@ -63,7 +67,7 @@ def read(file: Path):
             discard_empty_record(records)
         elif keyword == 'TLX WEIGHTS':
             next(records)     # Discard CSV header.
-            yield TLXAttributes(*map(int, next(records)))
+            yield TLXAttributes.from_csv(next(records))
 
 
 def read_records(file: Path) -> Iterator[list[str]]:
@@ -96,14 +100,15 @@ def parse_sus(records: Iterator[list[str]]) -> SystemUsabilityScale:
     """Parse the SUS questionnaire."""
 
     next(records)  # Discard CSV header.
-    sus = next(records)
+    raw = next(records)
+    weighted = next(records)
     discard_empty_record(records)
 
     if len(record := next(records)) != 1 and record[0] != 'score':
         raise ValueError(f'Expected score. Found {record}')
 
     score = float(next(records)[0])
-    return SystemUsabilityScale.from_csv(sus, score)
+    return SystemUsabilityScale.from_csvs(raw, weighted, score)
 
 
 def parse_nasa_tlx(records: Iterator[list[str]]) -> Iterator[NASA_TLX]:
