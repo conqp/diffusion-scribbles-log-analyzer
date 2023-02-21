@@ -27,7 +27,7 @@ def main():
     for file in args.file:
         print('Parsing file:', file)
         participant_data = ParticipantData.from_items(read(file))
-        print(participant_data)
+        # print(participant_data)
         print('Participant:', participant_data.participant)
         print('Runs:', len(participant_data.runs))
 
