@@ -25,5 +25,8 @@ class SelectionMethod(str, Enum):
 
 
 ALIASES = {
-    'lasso-selection': SelectionMethod.LASSO
+    'lasso-selection': SelectionMethod.LASSO,
+    'brush-selection': SelectionMethod.BRUSH,
+    'mahalanobis-selection': SelectionMethod.MAHALANOBIS,
+    'diffusion-scribbles': SelectionMethod.TWO_SIDED
 }
