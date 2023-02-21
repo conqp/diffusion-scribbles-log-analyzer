@@ -12,6 +12,9 @@ from dsla.rgb import RGB
 from dsla.selection_method import SelectionMethod
 
 
+__all__ = ['Event']
+
+
 @dataclass
 class Event:
     """Type of event."""

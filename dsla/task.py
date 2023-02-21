@@ -4,6 +4,8 @@ from typing import NamedTuple
 
 from dsla.event import Event
 from dsla.selection_method import SelectionMethod
+from dsla.selection_method_run import SelectionMethodRun
+from dsla.tlx_weights import TLXWeights
 
 
 __all__ = ['Task']
@@ -14,5 +16,5 @@ class Task(NamedTuple):
 
     selection_method: SelectionMethod
     training_tasks: list[Event]
-    study_tasks: list[StudyTask]
-    tlx_weighs: TLXWeighs
+    study_tasks: list[SelectionMethodRun]
+    tlx_weights: TLXWeights

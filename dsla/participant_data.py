@@ -3,8 +3,11 @@
 from typing import NamedTuple
 
 from dsla.participant import Participant
+from dsla.selection_method_run import SelectionMethodRun
 from dsla.study import Study
-from dsla.task import Task
+
+
+__all__ = ['ParticipantData']
 
 
 class ParticipantData(NamedTuple):
@@ -12,4 +15,4 @@ class ParticipantData(NamedTuple):
 
     study: Study
     participant: Participant
-    tasks: list[Task]
+    runs: list[SelectionMethodRun]
