@@ -9,6 +9,10 @@ __all__ = ['Dataset']
 class Dataset(str, Enum):
     """Available datasets."""
 
+    # Training
+    R15 = '10_R15'
+
+    # Study
     GAUSSIAN = '1_Gaussian'
     PATH_BASED = '2_pathbased'
     CRIM_RAD = '3_CRIM_RAD'
