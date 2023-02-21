@@ -186,6 +186,16 @@ class EraseStop(CoordinateEvent):
 
 
 @dataclass
+class Undo(Event):
+    """User undid last action."""
+
+
+@dataclass
+class Redo(Event):
+    """User redid last undone action."""
+
+
+@dataclass
 class TaskFinished(Event):
     """User has finished a study task."""
 
@@ -207,5 +217,7 @@ EVENTS = {
     'ERASE-START': EraseStart,
     'ERASE': Erase,
     'ERASE-STOP': EraseStop,
+    'UNDO': Undo,
+    'REDO': Redo,
     'TASK-FINISHED': TaskFinished
 }
