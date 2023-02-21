@@ -28,6 +28,7 @@ def main():
         print('Parsing file:', file)
         participant_data = ParticipantData.from_items(read(file))
         print(participant_data)
+        print('Participant:', participant_data.participant)
         print('Runs:', len(participant_data.runs))
 
         for run in participant_data.runs:
