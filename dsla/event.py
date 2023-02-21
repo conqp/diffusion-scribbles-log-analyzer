@@ -100,7 +100,6 @@ class CoordinateEvent(Event):
 
     @classmethod
     def parse_additional_fields(cls, x: str, y: str) -> tuple[Coordinates]:
-        print('CALLED')
         return Coordinates.from_strings(x, y),
 
 
