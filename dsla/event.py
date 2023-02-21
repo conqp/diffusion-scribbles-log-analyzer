@@ -166,6 +166,26 @@ class ColorAdd(ColorAction):
 
 
 @dataclass
+class Invert(Event):
+    """Color inversion event."""
+
+
+@dataclass
+class EraseStart(CoordinateEvent):
+    """User started to erase."""
+
+
+@dataclass
+class Erase(CoordinateEvent):
+    """User is erasing."""
+
+
+@dataclass
+class EraseStop(CoordinateEvent):
+    """User stopped erasing."""
+
+
+@dataclass
 class TaskFinished(Event):
     """User has finished a study task."""
 
@@ -183,5 +203,9 @@ EVENTS = {
     'TRAINING-TASK-FINISHED': TrainingTaskFinished,
     'TASK-START': TaskStart,
     'COLOR-ADD': ColorAdd,
+    'INVERT': Invert,
+    'ERASE-START': EraseStart,
+    'ERASE': Erase,
+    'ERASE-STOP': EraseStop,
     'TASK-FINISHED': TaskFinished
 }
