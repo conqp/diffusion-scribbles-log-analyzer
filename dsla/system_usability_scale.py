@@ -48,18 +48,26 @@ class SystemUsabilityScale(NamedTuple):
 
     questionnaire: SUSAttributes
     scores: SUSAttributes
-    score: float
+    pre_calculated_score: float
 
     @classmethod
     def from_csvs(
             cls,
             questionnaire: list[str],
             scores: list[str],
-            score: float
+            pre_calculated_score: float
     ) -> SystemUsabilityScale:
         """Create SUS data from a CSV record."""
         return cls(
             SUSAttributes.from_csv(questionnaire),
             SUSAttributes.from_csv(scores),
-            score
+            pre_calculated_score
         )
+
+    @property
+    def score(self) -> float:
+        """Re-calculated score."""
+        return sum(
+            (5 - attribute) if index % 2 else (attribute - 1)
+            for index, attribute in enumerate(self.questionnaire)
+        ) * 2.5

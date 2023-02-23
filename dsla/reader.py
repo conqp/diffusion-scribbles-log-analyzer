@@ -105,8 +105,8 @@ def parse_sus(records: Iterator[list[str]]) -> SystemUsabilityScale:
     if len(record := next(records)) != 1 and record[0] != 'score':
         raise ValueError(f'Expected score. Found {record}')
 
-    score = float(next(records)[0])
-    return SystemUsabilityScale.from_csvs(raw, weighted, score)
+    pre_calculated_score = float(next(records)[0])
+    return SystemUsabilityScale.from_csvs(raw, weighted, pre_calculated_score)
 
 
 def parse_nasa_tlx(records: Iterator[list[str]]) -> NASA_TLX:
