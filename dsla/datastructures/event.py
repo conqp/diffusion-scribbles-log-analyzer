@@ -171,6 +171,23 @@ class Invert(Event):
 
 
 @dataclass
+class ChangeBrushSize(Event):
+    """User changed brush size."""
+
+    from_: int
+    to: int
+
+    @classmethod
+    def parse_additional_fields(
+            cls,
+            from_: str,
+            _: str,
+            to: str
+    ) -> Iterable[Any]:
+        return int(from_), int(to)
+
+
+@dataclass
 class EraseStart(CoordinateEvent):
     """User started to erase."""
 
@@ -214,6 +231,7 @@ EVENTS = {
     'TASK-START': TaskStart,
     'COLOR-ADD': ColorAdd,
     'INVERT': Invert,
+    'CHANGE-BRUSH-SIZE': ChangeBrushSize,
     'ERASE-START': EraseStart,
     'ERASE': Erase,
     'ERASE-STOP': EraseStop,
