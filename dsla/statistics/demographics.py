@@ -1,11 +1,12 @@
 """Demographics statistics."""
 
+from collections import defaultdict
 from statistics import mean, stdev
 from typing import Any
 
 from dsla.datastructures import Gender, Participant, ParticipantData
 
-__all__ = ['average_demographics']
+__all__ = ['average_demographics', 'age_distribution']
 
 
 def average_demographics(
@@ -16,6 +17,17 @@ def average_demographics(
     return _average_demographics(
         [experiment.participant for experiment in experiments]
     )
+
+
+def age_distribution(experiments: list[ParticipantData]) -> dict[int, int]:
+    """Return the age distribution of the participants."""
+
+    ages = defaultdict(int)
+
+    for experiment in experiments:
+        ages[experiment.participant.age] += 1
+
+    return ages
 
 
 def _average_demographics(participants: list[Participant]) -> dict[str, Any]:
