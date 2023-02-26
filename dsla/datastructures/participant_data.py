@@ -3,12 +3,12 @@
 from __future__ import annotations
 from typing import Any, Iterator, NamedTuple
 
-from dsla.event import TrainingTaskStart
-from dsla.nasa_tlx import TLXAttributes
-from dsla.participant import Participant
-from dsla.selection_method_run import SelectionMethodRun
-from dsla.study import Study
-from dsla.task import Task
+from dsla.datastructures.event import TrainingTaskStart
+from dsla.datastructures.nasa_tlx import TLXAttributes
+from dsla.datastructures.participant import Participant
+from dsla.datastructures.selection_method_run import SelectionMethodRun
+from dsla.datastructures.study import Study
+from dsla.datastructures.task import Task
 
 
 __all__ = ['ParticipantData']

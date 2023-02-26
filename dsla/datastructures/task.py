@@ -1,7 +1,7 @@
 """A task."""
 
-from dsla.dataset import Dataset
-from dsla.event import Event, TrainingTaskStart, TaskStart
+from dsla.datastructures.dataset import Dataset
+from dsla.datastructures.event import Event, TrainingTaskStart, TaskStart
 
 
 __all__ = ['Task']

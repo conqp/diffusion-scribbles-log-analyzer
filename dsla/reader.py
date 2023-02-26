@@ -5,14 +5,16 @@ from logging import getLogger
 from pathlib import Path
 from typing import Iterator
 
-from dsla.classification import Classification, CorrectClassifications
-from dsla.event import Event
-from dsla.nasa_tlx import NASA_TLX, TLXAttributes
-from dsla.participant import Participant
-from dsla.study import Study
-from dsla.summary import Summary
-from dsla.system_usability_scale import SystemUsabilityScale
-from dsla.task import Task
+from dsla.datastructures import Classification
+from dsla.datastructures import CorrectClassifications
+from dsla.datastructures import Event
+from dsla.datastructures import NASA_TLX
+from dsla.datastructures import Participant
+from dsla.datastructures import Study
+from dsla.datastructures import Summary
+from dsla.datastructures import SystemUsabilityScale
+from dsla.datastructures import Task
+from dsla.datastructures import TLXAttributes
 
 
 LOGGER = getLogger('parser')

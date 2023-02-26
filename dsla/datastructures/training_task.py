@@ -1,6 +1,6 @@
 """A Training task."""
 
-from dsla.task import Task
+from dsla.datastructures.task import Task
 
 
 __all__ = ['TrainingTask']

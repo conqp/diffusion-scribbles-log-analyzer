@@ -3,15 +3,15 @@
 from __future__ import annotations
 from typing import Any, Iterator, NamedTuple
 
-from dsla.event import TrainingTaskStart, TaskStart
-from dsla.nasa_tlx import NASA_TLX
-from dsla.selection_method import SelectionMethod
-from dsla.study_task import StudyTask
-from dsla.summary import Summary
-from dsla.classification import Classification, CorrectClassifications
-from dsla.system_usability_scale import SystemUsabilityScale
-from dsla.task import Task
-from dsla.training_task import TrainingTask
+from dsla.datastructures.event import TrainingTaskStart, TaskStart
+from dsla.datastructures.nasa_tlx import NASA_TLX
+from dsla.datastructures.selection_method import SelectionMethod
+from dsla.datastructures.study_task import StudyTask
+from dsla.datastructures.summary import Summary
+from dsla.datastructures.classification import Classification, CorrectClassifications
+from dsla.datastructures.system_usability_scale import SystemUsabilityScale
+from dsla.datastructures.task import Task
+from dsla.datastructures.training_task import TrainingTask
 
 __all__ = ['SelectionMethodRun']
 

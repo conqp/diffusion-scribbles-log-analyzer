@@ -6,7 +6,7 @@ from operator import not_
 from pathlib import Path
 
 from dsla.reader import read
-from dsla.participant_data import ParticipantData
+from dsla.datastructures import ParticipantData
 
 
 def get_args(description: str = __doc__) -> Namespace:

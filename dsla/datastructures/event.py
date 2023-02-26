@@ -5,11 +5,11 @@ from dataclasses import dataclass
 from datetime import time
 from typing import Any, Iterable
 
-from dsla.color_change_action import ColorChangeAction
-from dsla.coordinates import Coordinates
-from dsla.dataset import Dataset
-from dsla.rgb import RGB
-from dsla.selection_method import SelectionMethod
+from dsla.datastructures.color_change_action import ColorChangeAction
+from dsla.datastructures.coordinates import Coordinates
+from dsla.datastructures.dataset import Dataset
+from dsla.datastructures.rgb import RGB
+from dsla.datastructures.selection_method import SelectionMethod
 
 
 __all__ = ['Event', 'TrainingTaskStart', 'TaskStart']

@@ -5,9 +5,9 @@ from datetime import timedelta
 from re import findall
 from typing import NamedTuple
 
-from dsla.dataset import Dataset
-from dsla.rgb import RGB
-from dsla.selection_method import SelectionMethod
+from dsla.datastructures.dataset import Dataset
+from dsla.datastructures.rgb import RGB
+from dsla.datastructures.selection_method import SelectionMethod
 
 
 __all__ = ['Summary']

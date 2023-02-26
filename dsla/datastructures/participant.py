@@ -4,7 +4,7 @@ from __future__ import annotations
 from configparser import ConfigParser
 from typing import NamedTuple
 
-from dsla.gender import Gender
+from dsla.datastructures.gender import Gender
 
 
 __all__ = ['Participant']

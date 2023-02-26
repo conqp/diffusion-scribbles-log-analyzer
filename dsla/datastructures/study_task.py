@@ -2,10 +2,10 @@
 
 from typing import NamedTuple
 
-from dsla.classification import Classification, CorrectClassifications
-from dsla.dataset import Dataset
-from dsla.summary import Summary
-from dsla.task import Task
+from dsla.datastructures.classification import Classification, CorrectClassifications
+from dsla.datastructures.dataset import Dataset
+from dsla.datastructures.summary import Summary
+from dsla.datastructures.task import Task
 
 
 __all__ = ['StudyTask']
