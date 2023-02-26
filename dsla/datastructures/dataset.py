@@ -24,10 +24,10 @@ class Dataset(str, Enum):
 
 
 STUDY_DATASETS = {
-    Dataset.GAUSSIAN,
-    Dataset.PATH_BASED,
-    Dataset.CRIM_RAD,
-    Dataset.RAD_PTRATIO,
-    Dataset.INDUS_NOX,
-    Dataset.AGE_DIS
+    Dataset.A,
+    Dataset.B,
+    Dataset.C,
+    Dataset.D,
+    Dataset.E,
+    Dataset.F
 }
