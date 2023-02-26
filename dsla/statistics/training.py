@@ -19,15 +19,17 @@ def training_runs(
         'training_runs': {
             method: {
                 'mean': (
-                    xbar := mean(training_runs_ := [
-                        len([
-                            run.selection_method is method
-                            for run in experiment.runs
-                        ])
+                    xbar := mean(training_runs_per_experiment_and_method := [
+                        len(run.training)
                         for experiment in experiments
+                        for run in experiment.runs
+                        if run.selection_method is method
                     ])
                 ),
-                'stdev': stdev(training_runs_, xbar=xbar)
+                'stdev': stdev(
+                    training_runs_per_experiment_and_method,
+                    xbar=xbar
+                )
             } for method in SelectionMethod
         }
     }
