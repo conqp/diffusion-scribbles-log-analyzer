@@ -6,12 +6,13 @@ from logging import DEBUG, INFO, basicConfig
 from pathlib import Path
 
 from dsla.datastructures import ParticipantData
-from dsla.plots import plot_age_distribution
+from dsla.plots import plot_age_distribution, plot_self_assessment_distribution
 from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
 from dsla.statistics import average_tlx
 from dsla.statistics import scribble_stats
+from dsla.statistics import self_assessment_distribution
 from dsla.statistics import training_runs
 
 
@@ -44,6 +45,10 @@ def main():
         dumps(average_demographics(experiments), indent=2)
     )
     print(
+        'Self-assessment:',
+        dumps(self_assessment_distribution(experiments), indent=2)
+    )
+    print(
         'Training:',
         dumps(training_runs(experiments), indent=2)
     )
@@ -61,6 +66,7 @@ def main():
     )
 
     plot_age_distribution(experiments)
+    plot_self_assessment_distribution(experiments)
 
 
 if __name__ == '__main__':

@@ -40,10 +40,10 @@ def self_assessment_distribution(
     """Returns the self-assessment distribution."""
 
     return {
-        'computer_experience': computer_experience_distribution(experiments),
-        'data_visualization_experience':
+        'computer experience': computer_experience_distribution(experiments),
+        'data visualization experience':
             data_visualization_experience_distribution(experiments),
-        'scatter_plot_experience': scatter_plot_experience_distribution(
+        'scatter plot experience': scatter_plot_experience_distribution(
             experiments
         )
     }
