@@ -45,5 +45,14 @@ def _average_demographics(participants: list[Participant]) -> dict[str, Any]:
                 participant.gender is Gender.NO_ANSWER for participant in
                 participants
             ) / len(participants)
-        }
+        },
+        'corrected_vision': sum(
+            participant.corrected_vision for participant in participants
+        ) / len(participants),
+        'normal_vision': sum(
+            participant.normal_vision for participant in participants
+        ) / len(participants),
+        'vision_ok': sum(
+            participant.vision_ok for participant in participants
+        ) / len(participants)
     }

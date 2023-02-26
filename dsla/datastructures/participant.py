@@ -21,6 +21,13 @@ class Participant(NamedTuple):
     data_visualization_experience: int
     scatter_plot_experience: int
 
+    @property
+    def vision_ok(self) -> bool:
+        """ Returns True if the participant has no corrected vision or
+        normal vision.
+        """
+        return not self.corrected_vision or self.normal_vision
+
     @classmethod
     def from_csv(cls, record: list[str]) -> Participant:
         """Create a new Participant from a CSV record."""
