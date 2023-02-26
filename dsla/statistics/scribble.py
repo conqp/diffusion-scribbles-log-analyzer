@@ -3,22 +3,29 @@
 from statistics import mean
 from typing import Any
 
-from dsla.datastructures import STUDY_DATASETS
+from dsla.datastructures import Dataset
 from dsla.datastructures import ParticipantData
+from dsla.datastructures import STUDY_DATASETS
 from dsla.datastructures import SelectionMethod
 from dsla.datastructures import Summary
-
 
 __all__ = ['scribble_stats']
 
 
-def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
+def scribble_stats(
+        experiments: list[ParticipantData],
+        *,
+        exclude_datasets: set[Dataset] = frozenset()
+) -> dict[str, Any]:
     """Returns statistics about the scribbling processes."""
 
     return {
         method: {
             'mean_processed_scatter_plots': mean(
-                len(run.tasks)
+                len([
+                    task for task in run.tasks
+                    if task.dataset not in exclude_datasets
+                ])
                 for experiment in experiments
                 for run in experiment.runs
             ),
@@ -29,6 +36,7 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
                     for run in experiment.runs
                     for task in run.tasks
                     if run.selection_method is method
+                    and task.dataset not in exclude_datasets
                 ]
             ),
             'correct': (correct := mean(
@@ -37,6 +45,7 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
                 for run in experiment.runs
                 for task in run.tasks
                 if run.selection_method is method
+                and task.dataset not in exclude_datasets
             )),
             'wrong': (wrong := mean(
                 sum(not correct for correct in task.correct)
@@ -44,6 +53,7 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
                 for run in experiment.runs
                 for task in run.tasks
                 if run.selection_method is method
+                and task.dataset not in exclude_datasets
             )),
             'correct_pct': correct / (correct + wrong),
             **{
@@ -85,7 +95,10 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
                     'correct_pct': correct_dataset / (
                             correct_dataset + wrong_dataset
                     ),
-                } for dataset in STUDY_DATASETS
+                } for dataset in (
+                    dataset for dataset in STUDY_DATASETS
+                    if dataset not in exclude_datasets
+                )
             }
         } for method in SelectionMethod
     }
