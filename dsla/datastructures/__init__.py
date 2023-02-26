@@ -7,6 +7,8 @@ from dsla.datastructures.gender import Gender
 from dsla.datastructures.nasa_tlx import NASA_TLX, TLXAttributes
 from dsla.datastructures.participant import Participant
 from dsla.datastructures.participant_data import ParticipantData
+from dsla.datastructures.selection_method import SelectionMethod
+from dsla.datastructures.selection_method_run import SelectionMethodRun
 from dsla.datastructures.study import Study
 from dsla.datastructures.summary import Summary
 from dsla.datastructures.system_usability_scale import SystemUsabilityScale
@@ -22,6 +24,8 @@ __all__ = [
     'Participant',
     'ParticipantData',
     'Participant',
+    'SelectionMethod',
+    'SelectionMethodRun',
     'Study',
     'Summary',
     'SystemUsabilityScale',
