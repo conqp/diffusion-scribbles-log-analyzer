@@ -6,7 +6,11 @@ from typing import Any
 
 from dsla.datastructures import Gender, Participant, ParticipantData
 
-__all__ = ['average_demographics', 'age_distribution']
+__all__ = [
+    'average_demographics',
+    'age_distribution',
+    'self_assessment_distribution'
+]
 
 
 def average_demographics(
@@ -28,6 +32,64 @@ def age_distribution(experiments: list[ParticipantData]) -> dict[int, int]:
         ages[experiment.participant.age] += 1
 
     return ages
+
+
+def self_assessment_distribution(
+        experiments: list[ParticipantData]
+) -> dict[str, dict[int, int]]:
+    """Returns the self-assessment distribution."""
+
+    return {
+        'computer_experience': computer_experience_distribution(experiments),
+        'data_visualization_experience':
+            data_visualization_experience_distribution(experiments),
+        'scatter_plot_experience': scatter_plot_experience_distribution(
+            experiments
+        )
+    }
+
+
+def computer_experience_distribution(
+        experiments: list[ParticipantData]
+) -> dict[int, int]:
+    """Returns the computer experience distribution."""
+
+    computer_experience = defaultdict(int)
+
+    for experiment in experiments:
+        computer_experience[experiment.participant.computer_experience] += 1
+
+    return computer_experience
+
+
+def data_visualization_experience_distribution(
+        experiments: list[ParticipantData]
+) -> dict[int, int]:
+    """Returns the data visualization experience distribution."""
+
+    data_visualization_experience = defaultdict(int)
+
+    for experiment in experiments:
+        data_visualization_experience[
+            experiment.participant.data_visualization_experience
+        ] += 1
+
+    return data_visualization_experience
+
+
+def scatter_plot_experience_distribution(
+        experiments: list[ParticipantData]
+) -> dict[int, int]:
+    """Returns the scatter plot experience distribution."""
+
+    scatter_plot_experience = defaultdict(int)
+
+    for experiment in experiments:
+        scatter_plot_experience[
+            experiment.participant.scatter_plot_experience
+        ] += 1
+
+    return scatter_plot_experience
 
 
 def _average_demographics(participants: list[Participant]) -> dict[str, Any]:
