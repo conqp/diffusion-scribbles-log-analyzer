@@ -18,7 +18,7 @@ def plot_average_correct(
     for index, (method, stats) in enumerate(
             selection_method_stats(experiments).items()
     ):
-        x = [dataset.name for dataset in stats['datasets'].keys()]
+        x = sorted(dataset.name for dataset in stats['datasets'].keys())
         y = [
             value['correct_pct'] * 100 for value in stats['datasets'].values()
         ]
@@ -26,7 +26,7 @@ def plot_average_correct(
             [p + offset + index * 0.2 for p in range(len(x))],
             y,
             0.2,
-            label=method.name
+            label=method.value.capitalize()
         )
 
     pyplot.xticks(range(6), x)
