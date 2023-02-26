@@ -1,7 +1,6 @@
 """Plot statistics on selection methods."""
 
 from matplotlib import pyplot
-from operator import itemgetter
 
 from dsla.datastructures import ParticipantData
 from dsla.statistics import selection_method_stats
