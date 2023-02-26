@@ -38,14 +38,14 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
                 for task in run.tasks
                 if run.selection_method is method
             )),
-            'wrong': mean(
-                sum(task.correct is False)
+            'wrong': (wrong := mean(
+                sum(not correct for correct in task.correct)
                 for experiment in experiments
                 for run in experiment.runs
                 for task in run.tasks
                 if run.selection_method is method
-            ),
-            'correct_pct': correct / len(experiments),
+            )),
+            'correct_pct': correct / (correct + wrong),
             **{
                 dataset: {
                     'events': mean(
@@ -74,15 +74,17 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
                         if run.selection_method is method
                         and task.dataset is dataset
                     )),
-                    'wrong': mean(
-                        sum(task.correct is False)
+                    'wrong': (wrong_dataset := mean(
+                        sum(not correct for correct in task.correct)
                         for experiment in experiments
                         for run in experiment.runs
                         for task in run.tasks
                         if run.selection_method is method
                         and task.dataset is dataset
+                    )),
+                    'correct_pct': correct_dataset / (
+                            correct_dataset + wrong_dataset
                     ),
-                    'correct_pct': correct_dataset / len(experiments),
                 } for dataset in STUDY_DATASETS
             }
         } for method in SelectionMethod
