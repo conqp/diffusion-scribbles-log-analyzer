@@ -9,6 +9,7 @@ from dsla.datastructures import ParticipantData
 from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
+from dsla.statistics import average_tlx
 from dsla.statistics import scribble_stats
 from dsla.statistics import training_runs
 
@@ -50,6 +51,10 @@ def main():
     print(
         'System Usability Scale:',
         dumps(average_sus(experiments), indent=2)
+    )
+    print(
+        'NASA-TLX:',
+        dumps(average_tlx(experiments), indent=2)
     )
 
 
