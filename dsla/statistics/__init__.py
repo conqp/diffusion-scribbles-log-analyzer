@@ -8,6 +8,7 @@ from dsla.statistics.scribble import scribble_stats
 from dsla.statistics.system_usability_scale import average_sus
 from dsla.statistics.training import training_runs
 
+
 __all__ = [
     'age_distribution',
     'average_demographics',
