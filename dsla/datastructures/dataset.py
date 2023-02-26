@@ -10,12 +10,12 @@ class Dataset(str, Enum):
     """Available datasets."""
 
     # Study
-    GAUSSIAN = '1_Gaussian'
-    PATH_BASED = '2_pathbased'
-    CRIM_RAD = '3_CRIM_RAD'
-    RAD_PTRATIO = '4_RAD_PTRATIO'
-    INDUS_NOX = '5_INDUS_NOX'
-    AGE_DIS = '6_AGE_DIS'
+    A = '3_CRIM_RAD'
+    B = '5_INDUS_NOX'
+    C = '4_RAD_PTRATIO'
+    D = '6_AGE_DIS'
+    E = '1_Gaussian'
+    F = '2_pathbased'
     # Training
     PERSONAL_HIKING_DATA = '7_personalHikingData'
     AGGREGATION = '8_Aggregation'
