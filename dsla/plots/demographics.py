@@ -16,4 +16,5 @@ def plot_age_distribution(experiments: list[ParticipantData]) -> None:
     pyplot.title("Participants' age distribution")
     pyplot.xlabel('Age (years)')
     pyplot.ylabel('Amount of participants')
+    pyplot.xticks(list(age_dist.keys()))
     pyplot.show()
