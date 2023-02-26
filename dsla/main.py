@@ -100,7 +100,7 @@ def main():
             dumps(
                 scribble_stats(
                     experiments,
-                    exclude_datasets=set(args.exclude_dataset)
+                    exclude_datasets=set(args.exclude_dataset or [])
                 ),
                 indent=2
             )
