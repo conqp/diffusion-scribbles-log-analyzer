@@ -5,9 +5,12 @@ from json import dumps
 from logging import DEBUG, INFO, basicConfig
 from pathlib import Path
 
-from dsla.reader import read
 from dsla.datastructures import ParticipantData
-from dsla.statistics import average_demographics, scribble_stats, training_runs
+from dsla.reader import read
+from dsla.statistics import average_demographics
+from dsla.statistics import average_sus
+from dsla.statistics import scribble_stats
+from dsla.statistics import training_runs
 
 
 def get_args(description: str = __doc__) -> Namespace:
@@ -43,6 +46,10 @@ def main():
     print(
         'Scribbles:',
         dumps(scribble_stats(experiments), indent=2)
+    )
+    print(
+        'System Usability Scale:',
+        dumps(average_sus(experiments), indent=2)
     )
 
 
