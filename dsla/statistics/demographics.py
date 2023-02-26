@@ -54,5 +54,50 @@ def _average_demographics(participants: list[Participant]) -> dict[str, Any]:
         ) / len(participants),
         'vision_ok': sum(
             participant.vision_ok for participant in participants
-        ) / len(participants)
+        ) / len(participants),
+        'computer_experience': {
+            'mean': (
+                xbar := mean(
+                    participant.computer_experience for participant
+                    in participants
+                )
+            ),
+            'stdev': stdev(
+                [
+                    participant.computer_experience for participant
+                    in participants
+                ],
+                xbar=xbar
+            )
+        },
+        'data_visualization_experience': {
+            'mean': (
+                xbar := mean(
+                    participant.data_visualization_experience for participant
+                    in participants
+                )
+            ),
+            'stdev': stdev(
+                [
+                    participant.data_visualization_experience for participant
+                    in participants
+                ],
+                xbar=xbar
+            )
+        },
+        'scatter_plot_experience': {
+            'mean': (
+                xbar := mean(
+                    participant.scatter_plot_experience for participant
+                    in participants
+                )
+            ),
+            'stdev': stdev(
+                [
+                    participant.scatter_plot_experience for participant
+                    in participants
+                ],
+                xbar=xbar
+            )
+        }
     }
