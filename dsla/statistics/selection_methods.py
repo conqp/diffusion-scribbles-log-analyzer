@@ -16,7 +16,7 @@ def selection_method_stats(
         experiments: list[ParticipantData],
         *,
         exclude_datasets: set[Dataset] = frozenset()
-) -> dict[str, Any]:
+) -> dict[SelectionMethod, Any]:
     """Returns statistics about the scribbling processes."""
 
     return {

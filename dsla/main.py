@@ -6,7 +6,9 @@ from logging import DEBUG, INFO, basicConfig
 from pathlib import Path
 
 from dsla.datastructures import Dataset, ParticipantData
-from dsla.plots import plot_age_distribution, plot_self_assessment_distribution
+from dsla.plots import plot_age_distribution
+from dsla.plots import plot_average_correct
+from dsla.plots import plot_self_assessment_distribution
 from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
@@ -124,6 +126,8 @@ def main():
 
         if args.self_assessment:
             plot_self_assessment_distribution(experiments)
+
+        plot_average_correct(experiments)
 
 
 if __name__ == '__main__':
