@@ -1,6 +1,7 @@
 """Diffusion scribbles log analyzer."""
 
 from argparse import ArgumentParser, Namespace
+from json import dumps
 from logging import DEBUG, INFO, basicConfig
 from operator import not_
 from pathlib import Path
@@ -42,7 +43,10 @@ def main():
                 print('Correct:', sum(task.correct))
                 print('Wrong:', sum(map(not_, task.correct)))
 
-    print('Average demographics:', average_demographics(experiments))
+    print(
+        'Average demographics:',
+        dumps(average_demographics(experiments), indent=2)
+    )
 
 
 if __name__ == '__main__':
