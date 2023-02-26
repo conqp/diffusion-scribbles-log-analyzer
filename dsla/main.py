@@ -30,18 +30,8 @@ def main():
     ]
 
     for experiment in experiments:
-        # print(experiment)
-        print('Participant:', experiment.participant)
-        print('Runs:', len(experiment.runs))
-
-        for run in experiment.runs:
-            print('Selection method:', run.selection_method)
-            print('Training runs:', len(run.training))
-            print('Study runs:', len(run.tasks))
-            for task in run.tasks:
-                print('Dataset:', task.dataset)
-                print('Correct:', sum(task.correct))
-                print('Wrong:', sum(map(not_, task.correct)))
+        if not experiment.participant.vision_ok:
+            print('Uncorrected vision:', experiment.participant)
 
     print(
         'Average demographics:',
