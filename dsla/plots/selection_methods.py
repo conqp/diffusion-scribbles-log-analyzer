@@ -5,6 +5,7 @@ from matplotlib import pyplot
 from dsla.datastructures import ParticipantData
 from dsla.statistics import selection_method_stats
 
+
 __all__ = ['plot_average_correct']
 
 
