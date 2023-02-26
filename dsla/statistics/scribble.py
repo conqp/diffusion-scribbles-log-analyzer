@@ -14,7 +14,7 @@ def scribble_stats(experiments: list[ParticipantData]) -> dict[str, Any]:
 
     return {
         method: {
-            'avg_processed_scatter_plots': mean(
+            'mean_processed_scatter_plots': mean(
                 len(run.tasks)
                 for experiment in experiments
                 for run in experiment.runs
