@@ -32,6 +32,8 @@ def main():
         ParticipantData.from_items(read(file)) for file in args.file
     ]
 
+    print('Participants:', len(experiments))
+
     for experiment in experiments:
         if not experiment.participant.vision_ok:
             print('Uncorrected vision:', experiment.participant)
