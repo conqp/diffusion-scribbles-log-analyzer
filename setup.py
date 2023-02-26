@@ -15,7 +15,11 @@ setup(
     packages=[
         'dsla',
         'dsla.datastructures',
+        'dsla.plots',
         'dsla.statistics'
+    ],
+    install_requires=[
+        'matplotlib'
     ],
     entry_points={'console_scripts': ['dsla = dsla.main:main']},
     url='https://github.com/conqp/speculum',

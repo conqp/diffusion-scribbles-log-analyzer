@@ -6,6 +6,7 @@ from logging import DEBUG, INFO, basicConfig
 from pathlib import Path
 
 from dsla.datastructures import ParticipantData
+from dsla.plots import plot_age_distribution
 from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
@@ -58,6 +59,8 @@ def main():
         'NASA-TLX:',
         dumps(average_tlx(experiments), indent=2)
     )
+
+    plot_age_distribution(experiments)
 
 
 if __name__ == '__main__':
