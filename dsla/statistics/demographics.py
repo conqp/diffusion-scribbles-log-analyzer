@@ -5,7 +5,6 @@ from typing import Any
 
 from dsla.datastructures import Gender, Participant, ParticipantData
 
-
 __all__ = ['average_demographics']
 
 
@@ -30,7 +29,9 @@ def _average_demographics(participants: list[Participant]) -> dict[str, Any]:
             'stdev': stdev(
                 [participant.age for participant in participants],
                 xbar=xbar
-            )
+            ),
+            'min': min(participant.age for participant in participants),
+            'max': max(participant.age for participant in participants)
         },
         'genders': {
             'male': sum(
