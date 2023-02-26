@@ -1,6 +1,7 @@
 """Plot statistics on selection methods."""
 
 from matplotlib import pyplot
+from operator import itemgetter
 
 from dsla.datastructures import ParticipantData
 from dsla.statistics import selection_method_stats
@@ -18,10 +19,16 @@ def plot_average_correct(
     for index, (method, stats) in enumerate(
             selection_method_stats(experiments).items()
     ):
-        x = sorted(dataset.name for dataset in stats['datasets'].keys())
-        y = [
-            value['correct_pct'] * 100 for value in stats['datasets'].values()
-        ]
+        x = []
+        y = []
+
+        for dataset, value in sorted(
+                stats['datasets'].items(),
+                key=lambda item: item[0].name
+        ):
+            x.append(dataset.name)
+            y.append(value['correct_pct'] * 100)
+
         pyplot.bar(
             [p + offset + index * 0.2 for p in range(len(x))],
             y,
