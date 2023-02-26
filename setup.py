@@ -12,7 +12,11 @@ setup(
     author='Richard Neumann',
     author_email='mail@richard-neumann.de',
     python_requires='>=3.8',
-    packages=['dsla'],
+    packages=[
+        'dsla',
+        'dsla.datastructures',
+        'dsla.statistics'
+    ],
     entry_points={'console_scripts': ['dsla = dsla.main:main']},
     url='https://github.com/conqp/speculum',
     license='GPLv3',
