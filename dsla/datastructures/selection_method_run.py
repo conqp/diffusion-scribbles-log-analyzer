@@ -1,14 +1,16 @@
 """Selection method run."""
 
 from __future__ import annotations
+
 from typing import Any, Iterator, NamedTuple
 
-from dsla.datastructures.event import TrainingTaskStart, TaskStart
+from dsla.datastructures.classification import Classification
+from dsla.datastructures.classification import CorrectClassifications
+from dsla.datastructures.event import TaskStart, TrainingTaskStart
 from dsla.datastructures.nasa_tlx import NASA_TLX
 from dsla.datastructures.selection_method import SelectionMethod
 from dsla.datastructures.study_task import StudyTask
 from dsla.datastructures.summary import Summary
-from dsla.datastructures.classification import Classification, CorrectClassifications
 from dsla.datastructures.system_usability_scale import SystemUsabilityScale
 from dsla.datastructures.task import Task
 from dsla.datastructures.training_task import TrainingTask
