@@ -3,6 +3,7 @@
 from dsla.datastructures.classification import Classification
 from dsla.datastructures.classification import CorrectClassifications
 from dsla.datastructures.event import Event
+from dsla.datastructures.gender import Gender
 from dsla.datastructures.nasa_tlx import NASA_TLX, TLXAttributes
 from dsla.datastructures.participant import Participant
 from dsla.datastructures.participant_data import ParticipantData
@@ -16,6 +17,7 @@ __all__ = [
     'Classification',
     'CorrectClassifications',
     'Event',
+    'Gender',
     'NASA_TLX',
     'Participant',
     'ParticipantData',

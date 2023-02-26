@@ -3,7 +3,7 @@
 from statistics import mean, stdev
 from typing import Any
 
-from dsla.datastructures import Participant, ParticipantData
+from dsla.datastructures import Gender, Participant, ParticipantData
 
 
 __all__ = ['average_demographics']
@@ -31,5 +31,19 @@ def _average_demographics(participants: list[Participant]) -> dict[str, Any]:
                 [participant.age for participant in participants],
                 xbar=xbar
             )
+        },
+        'genders': {
+            'male': sum(
+                participant.gender is Gender.MALE for participant in
+                participants
+            ) / len(participants),
+            'female': sum(
+                participant.gender is Gender.FEMALE for participant in
+                participants
+            ) / len(participants),
+            'n/a': sum(
+                participant.gender is Gender.NO_ANSWER for participant in
+                participants
+            ) / len(participants)
         }
     }
