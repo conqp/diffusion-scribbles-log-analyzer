@@ -7,6 +7,7 @@ from pathlib import Path
 
 from dsla.reader import read
 from dsla.datastructures import ParticipantData
+from dsla.statistics import average_demographics
 
 
 def get_args(description: str = __doc__) -> Namespace:
@@ -23,15 +24,16 @@ def main():
 
     args = get_args()
     basicConfig(level=DEBUG if args.debug else INFO)
+    experiments = [
+        ParticipantData.from_items(read(file)) for file in args.file
+    ]
 
-    for file in args.file:
-        print('Parsing file:', file)
-        participant_data = ParticipantData.from_items(read(file))
-        # print(participant_data)
-        print('Participant:', participant_data.participant)
-        print('Runs:', len(participant_data.runs))
+    for experiment in experiments:
+        # print(experiment)
+        print('Participant:', experiment.participant)
+        print('Runs:', len(experiment.runs))
 
-        for run in participant_data.runs:
+        for run in experiment.runs:
             print('Selection method:', run.selection_method)
             print('Training runs:', len(run.training))
             print('Study runs:', len(run.tasks))
@@ -39,6 +41,8 @@ def main():
                 print('Dataset:', task.dataset)
                 print('Correct:', sum(task.correct))
                 print('Wrong:', sum(map(not_, task.correct)))
+
+    print('Average demographics:', average_demographics(experiments))
 
 
 if __name__ == '__main__':
