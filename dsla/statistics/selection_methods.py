@@ -9,10 +9,10 @@ from dsla.datastructures import STUDY_DATASETS
 from dsla.datastructures import SelectionMethod
 from dsla.datastructures import Summary
 
-__all__ = ['scribble_stats']
+__all__ = ['selection_method_stats']
 
 
-def scribble_stats(
+def selection_method_stats(
         experiments: list[ParticipantData],
         *,
         exclude_datasets: set[Dataset] = frozenset()

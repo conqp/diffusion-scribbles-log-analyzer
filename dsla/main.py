@@ -11,7 +11,7 @@ from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
 from dsla.statistics import average_tlx
-from dsla.statistics import scribble_stats
+from dsla.statistics import selection_method_stats
 from dsla.statistics import self_assessment_distribution
 from dsla.statistics import training_runs
 
@@ -98,7 +98,7 @@ def main():
         print(
             'Brushing methods:',
             dumps(
-                scribble_stats(
+                selection_method_stats(
                     experiments,
                     exclude_datasets=set(args.exclude_dataset or [])
                 ),
