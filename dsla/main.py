@@ -7,7 +7,7 @@ from pathlib import Path
 
 from dsla.reader import read
 from dsla.datastructures import ParticipantData
-from dsla.statistics import average_demographics, training_runs
+from dsla.statistics import average_demographics, scribble_stats, training_runs
 
 
 def get_args(description: str = __doc__) -> Namespace:
@@ -39,6 +39,10 @@ def main():
     print(
         'Training:',
         dumps(training_runs(experiments), indent=2)
+    )
+    print(
+        'Scribbles:',
+        dumps(scribble_stats(experiments), indent=2)
     )
 
 
