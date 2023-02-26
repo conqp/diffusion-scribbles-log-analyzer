@@ -12,7 +12,7 @@ class Gender(str, Enum):
 
     MALE = 'male'
     FEMALE = 'female'
-    NO_ANSWER = 'n/a'
+    NO_ANSWER = 'prefer not to answer'
 
     @classmethod
     def from_string(cls, gender: str) -> Gender:
