@@ -2,6 +2,7 @@
 
 from dsla.datastructures.classification import Classification
 from dsla.datastructures.classification import CorrectClassifications
+from dsla.datastructures.dataset import STUDY_DATASETS, Dataset
 from dsla.datastructures.event import Event
 from dsla.datastructures.gender import Gender
 from dsla.datastructures.nasa_tlx import NASA_TLX, TLXAttributes
@@ -16,8 +17,10 @@ from dsla.datastructures.task import Task
 
 
 __all__ = [
+    'STUDY_DATASETS',
     'Classification',
     'CorrectClassifications',
+    'Dataset',
     'Event',
     'Gender',
     'NASA_TLX',

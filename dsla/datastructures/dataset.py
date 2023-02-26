@@ -3,7 +3,7 @@
 from enum import Enum
 
 
-__all__ = ['Dataset']
+__all__ = ['STUDY_DATASETS', 'Dataset']
 
 
 class Dataset(str, Enum):
@@ -21,3 +21,13 @@ class Dataset(str, Enum):
     AGGREGATION = '8_Aggregation'
     R15 = '10_R15'
     SIMPLIFIED_IRIS = '12_simplified.iris.data.set'
+
+
+STUDY_DATASETS = {
+    Dataset.GAUSSIAN,
+    Dataset.PATH_BASED,
+    Dataset.CRIM_RAD,
+    Dataset.RAD_PTRATIO,
+    Dataset.INDUS_NOX,
+    Dataset.AGE_DIS
+}
