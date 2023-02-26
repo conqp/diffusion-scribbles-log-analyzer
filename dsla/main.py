@@ -3,7 +3,6 @@
 from argparse import ArgumentParser, Namespace
 from json import dumps
 from logging import DEBUG, INFO, basicConfig
-from operator import not_
 from pathlib import Path
 
 from dsla.reader import read
