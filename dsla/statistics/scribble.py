@@ -95,9 +95,9 @@ def scribble_stats(
                     'correct_pct': correct_dataset / (
                             correct_dataset + wrong_dataset
                     ),
-                } for dataset in (
-                    dataset for dataset in STUDY_DATASETS
-                    if dataset not in exclude_datasets
+                } for dataset in filter(
+                    lambda dataset: dataset not in exclude_datasets,
+                    STUDY_DATASETS
                 )
             }
         } for method in SelectionMethod
