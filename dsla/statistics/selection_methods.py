@@ -56,7 +56,7 @@ def selection_method_stats(
                 and task.dataset not in exclude_datasets
             )),
             'correct_pct': correct / (correct + wrong),
-            **{
+            'datasets': {
                 dataset: {
                     'events': mean(
                         len(task.events)

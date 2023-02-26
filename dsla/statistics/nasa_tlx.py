@@ -19,7 +19,7 @@ def average_tlx(experiments: list[ParticipantData]) -> dict[str, Any]:
             experiment.tlx_weights
             for experiment in experiments
         ]),
-        **{
+        'methods': {
             selection_method: mean_tlx([
                 run.nasa_tlx
                 for experiment in experiments
