@@ -30,6 +30,7 @@ def plot_average_correct(
 
     pyplot.xticks(range(6), x)
     pyplot.title('Correct selections')
+    pyplot.xlabel('Dataset')
     pyplot.ylabel('Correct selections in %')
-    pyplot.legend()
+    pyplot.legend(loc='center')
     pyplot.show()
