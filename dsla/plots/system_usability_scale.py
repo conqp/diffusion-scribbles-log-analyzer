@@ -10,7 +10,7 @@ __all__ = ['plot_sus']
 
 
 STATEMENTS_SHORT = [
-    'frequently',
+    'frequent use',
     'complex',
     'easy',
     'technical',
