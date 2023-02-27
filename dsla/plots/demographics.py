@@ -2,13 +2,13 @@
 
 from matplotlib import pyplot
 
-from dsla.datastructures import ParticipantData
+from dsla.datastructures import Experiment
 from dsla.statistics import age_distribution, self_assessment_distribution
 
 __all__ = ['plot_age_distribution', 'plot_self_assessment_distribution']
 
 
-def plot_age_distribution(experiments: list[ParticipantData]) -> None:
+def plot_age_distribution(experiments: list[Experiment]) -> None:
     """Plot the age distribution."""
 
     age_dist = age_distribution(experiments)
@@ -21,7 +21,7 @@ def plot_age_distribution(experiments: list[ParticipantData]) -> None:
 
 
 def plot_self_assessment_distribution(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> None:
     """Plot the self-assessment distribution."""
 

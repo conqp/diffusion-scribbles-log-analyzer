@@ -2,7 +2,7 @@
 
 from matplotlib import pyplot
 
-from dsla.datastructures import ParticipantData
+from dsla.datastructures import Experiment
 from dsla.statistics import selection_method_stats
 
 
@@ -10,7 +10,7 @@ __all__ = ['plot_average_correct']
 
 
 def plot_average_correct(
-        experiments: list[ParticipantData],
+        experiments: list[Experiment],
         offset: int = -0.3
 ) -> None:
     """Plot mean performance data per brushing method and scatter plot."""

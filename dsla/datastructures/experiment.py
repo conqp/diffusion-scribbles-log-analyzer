@@ -11,11 +11,11 @@ from dsla.datastructures.study import Study
 from dsla.datastructures.task import Task
 
 
-__all__ = ['ParticipantData']
+__all__ = ['Experiment']
 
 
-class ParticipantData(NamedTuple):
-    """Per-participant study data."""
+class Experiment(NamedTuple):
+    """Per-participant experiment."""
 
     study: Study
     participant: Participant
@@ -23,7 +23,7 @@ class ParticipantData(NamedTuple):
     runs: list[SelectionMethodRun]
 
     @classmethod
-    def from_items(cls, items: Iterator[Any]) -> ParticipantData:
+    def from_items(cls, items: Iterator[Any]) -> Experiment:
         """Creates participant data from an iterable of objects."""
 
         study, participant, *remainder = items

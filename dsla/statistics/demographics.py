@@ -4,7 +4,7 @@ from collections import defaultdict
 from statistics import mean, stdev
 from typing import Any
 
-from dsla.datastructures import Gender, Participant, ParticipantData
+from dsla.datastructures import Experiment, Gender, Participant
 
 __all__ = [
     'average_demographics',
@@ -14,7 +14,7 @@ __all__ = [
 
 
 def average_demographics(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> dict[str, Any]:
     """Return a dict of average demographics."""
 
@@ -23,7 +23,7 @@ def average_demographics(
     )
 
 
-def age_distribution(experiments: list[ParticipantData]) -> dict[int, int]:
+def age_distribution(experiments: list[Experiment]) -> dict[int, int]:
     """Return the age distribution of the participants."""
 
     ages = defaultdict(int)
@@ -35,7 +35,7 @@ def age_distribution(experiments: list[ParticipantData]) -> dict[int, int]:
 
 
 def self_assessment_distribution(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> dict[str, dict[int, int]]:
     """Returns the self-assessment distribution."""
 
@@ -50,7 +50,7 @@ def self_assessment_distribution(
 
 
 def computer_experience_distribution(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> dict[int, int]:
     """Returns the computer experience distribution."""
 
@@ -63,7 +63,7 @@ def computer_experience_distribution(
 
 
 def data_visualization_experience_distribution(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> dict[int, int]:
     """Returns the data visualization experience distribution."""
 
@@ -78,7 +78,7 @@ def data_visualization_experience_distribution(
 
 
 def scatter_plot_experience_distribution(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> dict[int, int]:
     """Returns the scatter plot experience distribution."""
 

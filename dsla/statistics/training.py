@@ -3,15 +3,14 @@
 from statistics import mean, stdev
 from typing import Any
 
-from dsla.datastructures import ParticipantData
-from dsla.datastructures import SelectionMethod
+from dsla.datastructures import Experiment, SelectionMethod
 
 
 __all__ = ['training_runs']
 
 
 def training_runs(
-        experiments: list[ParticipantData]
+        experiments: list[Experiment]
 ) -> dict[str, Any]:
     """Return a dict of average demographics."""
 

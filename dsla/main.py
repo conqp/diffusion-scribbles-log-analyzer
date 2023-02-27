@@ -5,7 +5,7 @@ from json import dumps
 from logging import DEBUG, INFO, basicConfig
 from pathlib import Path
 
-from dsla.datastructures import Dataset, ParticipantData
+from dsla.datastructures import Dataset, Experiment
 from dsla.plots import plot_age_distribution
 from dsla.plots import plot_average_correct
 from dsla.plots import plot_self_assessment_distribution
@@ -71,7 +71,7 @@ def main():
     experiments = list(
         filter(
             lambda exp: exp.participant.vision_ok,
-            (ParticipantData.from_items(read(file)) for file in args.file)
+            (Experiment.from_items(read(file)) for file in args.file)
         )
     )
 

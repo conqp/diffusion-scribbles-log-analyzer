@@ -4,7 +4,7 @@ from statistics import mean
 from typing import Any
 
 from dsla.datastructures import Dataset
-from dsla.datastructures import ParticipantData
+from dsla.datastructures import Experiment
 from dsla.datastructures import STUDY_DATASETS
 from dsla.datastructures import SelectionMethod
 from dsla.datastructures import Summary
@@ -13,7 +13,7 @@ __all__ = ['selection_method_stats']
 
 
 def selection_method_stats(
-        experiments: list[ParticipantData],
+        experiments: list[Experiment],
         *,
         exclude_datasets: set[Dataset] = frozenset()
 ) -> dict[SelectionMethod, Any]:

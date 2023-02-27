@@ -3,14 +3,14 @@
 from statistics import mean
 from typing import Any
 
-from dsla.datastructures import ParticipantData
+from dsla.datastructures import Experiment
 from dsla.datastructures import SelectionMethod
 from dsla.datastructures import SystemUsabilityScale
 
 __all__ = ['average_sus']
 
 
-def average_sus(experiments: list[ParticipantData]) -> dict[str, Any]:
+def average_sus(experiments: list[Experiment]) -> dict[str, Any]:
     """Return average data of the SUSs."""
 
     return {

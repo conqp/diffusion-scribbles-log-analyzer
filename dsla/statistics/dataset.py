@@ -3,14 +3,14 @@
 from collections import defaultdict
 from typing import Any
 
-from dsla.datastructures import Dataset, ParticipantData, SelectionMethod
+from dsla.datastructures import Dataset, Experiment, SelectionMethod
 from dsla.statistics.selection_methods import selection_method_stats
 
 __all__ = ['dataset_stats']
 
 
 def dataset_stats(
-        experiments: list[ParticipantData],
+        experiments: list[Experiment],
         value: str
 ) -> dict[Dataset, dict[SelectionMethod, Any]]:
     """Yield pairs of datasets and average correct part."""

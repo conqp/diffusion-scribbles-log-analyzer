@@ -4,14 +4,14 @@ from statistics import mean
 from typing import Any
 
 from dsla.datastructures import NASA_TLX
-from dsla.datastructures import ParticipantData
+from dsla.datastructures import Experiment
 from dsla.datastructures import SelectionMethod
 from dsla.datastructures import TLXAttributes
 
 __all__ = ['average_tlx']
 
 
-def average_tlx(experiments: list[ParticipantData]) -> dict[str, Any]:
+def average_tlx(experiments: list[Experiment]) -> dict[str, Any]:
     """Return mean NASA-TLX data."""
 
     return {
