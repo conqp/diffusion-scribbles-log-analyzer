@@ -32,7 +32,7 @@ def plot_average_correct(
             [p + offset + index * 0.2 for p in range(len(x))],
             y,
             0.2,
-            label=method.value.capitalize()
+            label=method.canonical_name
         )
 
     pyplot.xticks(range(6), x)

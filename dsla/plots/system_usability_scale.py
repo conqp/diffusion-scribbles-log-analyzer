@@ -21,7 +21,7 @@ def plot_sus(experiments: list[Experiment], offset=-0.3) -> None:
             [p + offset + index * 0.2 for p in x],
             y,
             0.2,
-            label=SelectionMethod(method).value.capitalize()
+            label=SelectionMethod(method).canonical_name
         )
 
     pyplot.xticks(x)
