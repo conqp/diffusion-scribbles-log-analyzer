@@ -9,6 +9,20 @@ from dsla.statistics import average_sus
 __all__ = ['plot_sus']
 
 
+STATEMENTS_SHORT = [
+    'frequently',
+    'complex',
+    'easy',
+    'technical',
+    'integration',
+    'inconsistent',
+    'learnable',
+    'cumbersome',
+    'confident',
+    'learning curve'
+]
+
+
 def plot_sus(experiments: list[Experiment], offset=-0.3) -> None:
     """Plot the System Usability Scale of the respective selection method."""
 
@@ -24,7 +38,13 @@ def plot_sus(experiments: list[Experiment], offset=-0.3) -> None:
             label=SelectionMethod(method).canonical_name
         )
 
-    pyplot.xticks(x)
+    pyplot.xticks(
+        x,
+        [
+            f'{index} ({short_desc})'
+            for index, short_desc in enumerate(STATEMENTS_SHORT, start=1)
+        ]
+    )
     pyplot.title('Average System Usability Scale results')
     pyplot.xlabel('Statement no.')
     pyplot.ylabel('Points (1-5)')
