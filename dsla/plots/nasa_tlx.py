@@ -42,7 +42,6 @@ def plot_nasa_tlx(experiments: list[Experiment], offset: float = -0.3) -> None:
         ]
     )
     pyplot.title('Average weighted NASA-TLX results')
-    pyplot.xlabel('Statement no.')
     pyplot.ylabel('Score')
     pyplot.legend(loc='center')
     pyplot.show()
