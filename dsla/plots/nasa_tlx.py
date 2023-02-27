@@ -47,10 +47,13 @@ def plot_raw_nasa_tlx(
     pyplot.xticks(
         x,
         [
-            f'{index} ({short_desc})'
+            f'{short_desc} ({index})'
             for index, short_desc in enumerate(STATEMENTS_SHORT, start=1)
-        ]
+        ],
+        rotation=-45,
+        ha='left'
     )
+    pyplot.subplots_adjust(bottom=0.3)
     pyplot.title('Average raw NASA-TLX results')
     pyplot.ylabel('Score')
     pyplot.legend(loc='center')
