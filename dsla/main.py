@@ -8,6 +8,7 @@ from pathlib import Path
 from dsla.datastructures import Dataset, Experiment
 from dsla.plots import plot_age_distribution
 from dsla.plots import plot_average_correct
+from dsla.plots import plot_nasa_tlx
 from dsla.plots import plot_self_assessment_distribution
 from dsla.plots import plot_sus
 from dsla.reader import read
@@ -133,6 +134,9 @@ def main():
 
         if args.system_usability_scale:
             plot_sus(experiments)
+
+        if args.nasa_tlx:
+            plot_nasa_tlx(experiments)
 
 
 if __name__ == '__main__':
