@@ -23,7 +23,7 @@ STATEMENTS_SHORT = [
 ]
 
 
-def plot_sus(experiments: list[Experiment], offset=-0.3) -> None:
+def plot_sus(experiments: list[Experiment], offset: float = -0.3) -> None:
     """Plot the System Usability Scale of the respective selection method."""
 
     for index, (method, avg_sus) in enumerate(
