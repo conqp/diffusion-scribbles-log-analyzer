@@ -128,7 +128,8 @@ def main():
         if args.self_assessment:
             plot_self_assessment_distribution(experiments)
 
-        plot_average_correct(experiments)
+        if args.brushing_methods:
+            plot_average_correct(experiments)
 
         if args.system_usability_scale:
             plot_selection_method(experiments)
