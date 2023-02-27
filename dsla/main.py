@@ -9,7 +9,7 @@ from dsla.datastructures import Dataset, Experiment
 from dsla.plots import plot_age_distribution
 from dsla.plots import plot_average_correct
 from dsla.plots import plot_self_assessment_distribution
-from dsla.plots import plot_selection_method
+from dsla.plots import plot_sus
 from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
@@ -132,7 +132,7 @@ def main():
             plot_average_correct(experiments)
 
         if args.system_usability_scale:
-            plot_selection_method(experiments)
+            plot_sus(experiments)
 
 
 if __name__ == '__main__':
