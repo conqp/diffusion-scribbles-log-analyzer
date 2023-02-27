@@ -7,6 +7,9 @@ from typing import NamedTuple
 __all__ = ['NASA_TLX', 'TLXAttributes']
 
 
+SCALING_FACTOR: int = 5
+
+
 class TLXAttributes(NamedTuple):
     """NASA TLX attributes."""
 
@@ -41,6 +44,11 @@ class NASA_TLX(NamedTuple):
     weighted: TLXAttributes
     score: float
 
+    @property
+    def normalized(self) -> TLXAttributes:
+        """Return normalized TLX attributes."""
+        return TLXAttributes(*(value * SCALING_FACTOR for value in self.raw))
+
     @classmethod
     def from_csvs(
             cls,
@@ -54,3 +62,10 @@ class NASA_TLX(NamedTuple):
             TLXAttributes.from_csv(weighted),
             score
         )
+
+    def calculate_score(self, weightings: TLXAttributes) -> float:
+        """Return the re-calculated score."""
+        return sum(
+            value * weighting * 5
+            for value, weighting in zip(self.raw, weightings)
+        ) / 15

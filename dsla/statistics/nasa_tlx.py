@@ -20,12 +20,14 @@ def average_tlx(experiments: list[Experiment]) -> dict[str, Any]:
             for experiment in experiments
         ]),
         'methods': {
-            selection_method: mean_tlx([
-                run.nasa_tlx
-                for experiment in experiments
-                for run in experiment.runs
-                if run.selection_method is selection_method
-            ]) for selection_method in SelectionMethod
+            selection_method: mean_tlx(
+                [
+                    run.nasa_tlx
+                    for experiment in experiments
+                    for run in experiment.runs
+                    if run.selection_method is selection_method
+                ]
+            ) for selection_method in SelectionMethod
         }
     }
 
@@ -53,7 +55,9 @@ def mean_weighting(weightings: list[TLXAttributes]) -> dict[str, Any]:
     }
 
 
-def mean_tlx(nasa_tlxs: list[NASA_TLX]) -> dict[str, Any]:
+def mean_tlx(
+        nasa_tlxs: list[NASA_TLX]
+) -> dict[str, Any]:
     """Return mean TLX data."""
 
     return {
@@ -75,6 +79,28 @@ def mean_tlx(nasa_tlxs: list[NASA_TLX]) -> dict[str, Any]:
                 nasa_tlx.raw.frustration_level for nasa_tlx in nasa_tlxs
             )
         },
+        'normalized': {
+            'mental_demand': mean(
+                nasa_tlx.normalized.mental_demand for nasa_tlx in nasa_tlxs
+            ),
+            'physical_demand': mean(
+                nasa_tlx.normalized.physical_demand for nasa_tlx in nasa_tlxs
+            ),
+            'temporal_demand': mean(
+                nasa_tlx.normalized.temporal_demand for nasa_tlx in nasa_tlxs
+            ),
+            'overall_performance': mean(
+                nasa_tlx.normalized.overall_performance
+                for nasa_tlx in nasa_tlxs
+            ),
+            'effort': mean(
+                nasa_tlx.normalized.effort for nasa_tlx in nasa_tlxs
+            ),
+            'frustration_level': mean(
+                nasa_tlx.normalized.frustration_level
+                for nasa_tlx in nasa_tlxs
+            )
+        },
         'weighted': {
             'mental_demand': mean(
                 nasa_tlx.weighted.mental_demand for nasa_tlx in nasa_tlxs
@@ -86,11 +112,15 @@ def mean_tlx(nasa_tlxs: list[NASA_TLX]) -> dict[str, Any]:
                 nasa_tlx.weighted.temporal_demand for nasa_tlx in nasa_tlxs
             ),
             'overall_performance': mean(
-                nasa_tlx.weighted.overall_performance for nasa_tlx in nasa_tlxs
+                nasa_tlx.weighted.overall_performance
+                for nasa_tlx in nasa_tlxs
             ),
-            'effort': mean(nasa_tlx.weighted.effort for nasa_tlx in nasa_tlxs),
+            'effort': mean(
+                nasa_tlx.weighted.effort for nasa_tlx in nasa_tlxs
+            ),
             'frustration_level': mean(
-                nasa_tlx.weighted.frustration_level for nasa_tlx in nasa_tlxs
+                nasa_tlx.weighted.frustration_level
+                for nasa_tlx in nasa_tlxs
             )
         },
         'score': mean(nasa_tlx.score for nasa_tlx in nasa_tlxs)

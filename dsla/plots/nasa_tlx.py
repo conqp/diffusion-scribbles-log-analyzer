@@ -35,7 +35,7 @@ def plot_raw_nasa_tlx(
     for index, (method, nasa_tlx) in enumerate(
             average_tlx(experiments)['methods'].items()
     ):
-        y = list(nasa_tlx['raw'].values())
+        y = list(nasa_tlx['normalized'].values())
         x = range(1, len(y) + 1)
         pyplot.bar(
             [p + offset + index * 0.2 for p in x],
