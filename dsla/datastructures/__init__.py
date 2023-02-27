@@ -12,6 +12,7 @@ from dsla.datastructures.selection_method import SelectionMethod
 from dsla.datastructures.selection_method_run import SelectionMethodRun
 from dsla.datastructures.study import Study
 from dsla.datastructures.summary import Summary
+from dsla.datastructures.system_usability_scale import SUSAttributes
 from dsla.datastructures.system_usability_scale import SystemUsabilityScale
 from dsla.datastructures.task import Task
 
@@ -31,6 +32,7 @@ __all__ = [
     'SelectionMethodRun',
     'Study',
     'Summary',
+    'SUSAttributes',
     'SystemUsabilityScale',
     'Task',
     'TLXAttributes'
