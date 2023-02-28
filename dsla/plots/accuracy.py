@@ -1,5 +1,6 @@
 """Plotting of accuracy."""
 
+from operator import itemgetter
 from typing import Any
 
 from matplotlib import pyplot
@@ -43,7 +44,7 @@ def plot_average_accuracy(
 
 def plot_average_accuracy_per_method(
         experiments: list[Experiment],
-        bar_width: float = 0.2
+        bar_width: float = 0.1
 ) -> None:
     """Plot the average precision per selection method."""
 
@@ -56,7 +57,7 @@ def plot_average_accuracy_per_method(
 def plot_accuracy_for_method(
         method: SelectionMethod,
         stats: dict[str, Any],
-        bar_width: float = 0.2
+        bar_width: float = 0.1
 ) -> None:
     """Plot accuracy details for the given selection method."""
 
@@ -70,7 +71,7 @@ def plot_accuracy_for_method(
         y = []
 
         for typ, value in values['precision'].items():
-            x.append(' '.join(typ.split('_')[:2]))
+            x.append(''.join(map(itemgetter(0), typ.split('_')[:2])).upper())
             y.append(value)
 
         offset = - (bar_width * len(x) / 2 - bar_width / 2)
