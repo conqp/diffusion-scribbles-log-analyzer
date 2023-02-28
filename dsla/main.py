@@ -7,10 +7,11 @@ from pathlib import Path
 
 from dsla.datastructures import Dataset, Experiment
 from dsla.plots import plot_age_distribution
+from dsla.plots import plot_average_accuracy
+from dsla.plots import plot_average_accuracy_per_method
 from dsla.plots import plot_average_correct
 from dsla.plots import plot_average_durations
 from dsla.plots import plot_nasa_tlx
-from dsla.plots import plot_precisions
 from dsla.plots import plot_self_assessment_distribution
 from dsla.plots import plot_sus
 from dsla.reader import read
@@ -28,6 +29,10 @@ def get_args(description: str = __doc__) -> Namespace:
     parser = ArgumentParser(description=description)
     parser.add_argument('file', type=Path, nargs='+')
     parser.add_argument('-d', '--debug', action='store_true')
+    parser.add_argument(
+        '-A', '--accuracy', action='store_true',
+        help='print statistics (plots only)'
+    )
     parser.add_argument(
         '-B', '--brushing-methods', action='store_true',
         help='print brushing methods statistics'
@@ -125,6 +130,10 @@ def main():
         )
 
     if args.plot:
+        if args.accuracy:
+            plot_average_accuracy(experiments)
+            plot_average_accuracy_per_method(experiments)
+
         if args.demographics:
             plot_age_distribution(experiments)
 
@@ -134,7 +143,6 @@ def main():
         if args.brushing_methods:
             plot_average_correct(experiments)
             plot_average_durations(experiments)
-            plot_precisions(experiments)
 
         if args.system_usability_scale:
             plot_sus(experiments)

@@ -6,7 +6,7 @@ from dsla.datastructures import Experiment
 from dsla.statistics import selection_method_stats
 
 
-__all__ = ['plot_average_correct', 'plot_average_durations', 'plot_precisions']
+__all__ = ['plot_average_correct', 'plot_average_durations']
 
 
 def plot_average_correct(
@@ -51,36 +51,6 @@ def plot_average_durations(
 
     plot_average_duration(experiments, key='draw_duration', offset=offset)
     plot_average_duration(experiments, key='task_duration', offset=offset)
-
-
-def plot_precisions(
-        experiments: list[Experiment],
-        offset: int = -0.3
-) -> None:
-    """Plot the average precision per selection method."""
-
-    for index, (method, stats) in enumerate(
-            selection_method_stats(experiments).items()
-    ):
-        x = []
-        y = []
-
-        for typ, value in stats['precision'].items():
-            x.append(' '.join(typ.split('_')[:2]))
-            y.append(value)
-
-        pyplot.bar(
-            [p + offset + index * 0.2 for p in range(len(x))],
-            y,
-            0.2,
-            label=method.canonical_name
-        )
-
-    pyplot.xticks(range(4), x)
-    pyplot.title('Selection accuracy')
-    pyplot.ylabel('Amount in %')
-    pyplot.legend(loc='center')
-    pyplot.show()
 
 
 def plot_average_duration(
