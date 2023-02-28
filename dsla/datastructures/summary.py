@@ -30,7 +30,7 @@ class Summary(NamedTuple):
     scribble_count: int
     scribble_pixels: int
     eraser_count: int
-    classes: list[RGB]
+    classes: tuple[RGB]
 
     @classmethod
     def from_csv(cls, record: list[str]) -> Summary:
@@ -52,7 +52,7 @@ class Summary(NamedTuple):
             int(scribble_count),
             int(scribble_pixels),
             int(eraser_count),
-            list(parse_classes(classes))
+            tuple(parse_classes(classes))
         )
 
 

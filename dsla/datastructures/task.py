@@ -7,7 +7,7 @@ from dsla.datastructures.event import Event, TrainingTaskStart, TaskStart
 __all__ = ['Task']
 
 
-class Task(list[Event]):
+class Task(tuple[Event]):
     """A list of events."""
 
     @property

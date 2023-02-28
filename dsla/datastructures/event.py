@@ -15,7 +15,7 @@ from dsla.datastructures.selection_method import SelectionMethod
 __all__ = ['Event', 'TrainingTaskStart', 'TaskStart']
 
 
-@dataclass
+@dataclass(frozen=True)
 class Event:
     """Type of event."""
 
@@ -38,7 +38,7 @@ class Event:
         return args
 
 
-@dataclass
+@dataclass(frozen=True)
 class StartAction(Event):
     """A start action."""
 
@@ -57,12 +57,12 @@ class StartAction(Event):
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class TrainingTaskStart(StartAction):
     """A new training task has started."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class ChangeMethod(Event):
     """Method change."""
 
@@ -76,12 +76,12 @@ class ChangeMethod(Event):
         return SelectionMethod.from_string(new_method),
 
 
-@dataclass
+@dataclass(frozen=True)
 class Reset(Event):
     """Method reset."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class DatasetLoaded(Event):
     """Dataset has been loaded."""
 
@@ -92,7 +92,7 @@ class DatasetLoaded(Event):
         return Dataset(dataset),
 
 
-@dataclass
+@dataclass(frozen=True)
 class CoordinateEvent(Event):
     """Event with coordinates."""
 
@@ -103,22 +103,22 @@ class CoordinateEvent(Event):
         return Coordinates.from_strings(x, y),
 
 
-@dataclass
+@dataclass(frozen=True)
 class DrawStart(CoordinateEvent):
     """User started drawing."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class Draw(CoordinateEvent):
     """User is drawing."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class DrawStop(CoordinateEvent):
     """User stopped drawing."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class ColorAction(Event):
     """A color-related action."""
 
@@ -140,37 +140,37 @@ class ColorAction(Event):
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class ColorChange(ColorAction):
     """User changed a color."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class UserSelectionFinished(Event):
     """User has finished the selection."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class TrainingTaskFinished(Event):
     """User has finished a training task."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class TaskStart(StartAction):
     """A new study task has started."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class ColorAdd(ColorAction):
     """User added a custom color."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class Invert(Event):
     """Color inversion event."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class ChangeBrushSize(Event):
     """User changed brush size."""
 
@@ -187,32 +187,32 @@ class ChangeBrushSize(Event):
         return int(from_), int(to)
 
 
-@dataclass
+@dataclass(frozen=True)
 class EraseStart(CoordinateEvent):
     """User started to erase."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class Erase(CoordinateEvent):
     """User is erasing."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class EraseStop(CoordinateEvent):
     """User stopped erasing."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class Undo(Event):
     """User undid last action."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class Redo(Event):
     """User redid last undone action."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class TaskFinished(Event):
     """User has finished a study task."""
 

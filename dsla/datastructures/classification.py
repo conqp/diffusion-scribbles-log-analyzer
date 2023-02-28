@@ -4,9 +4,9 @@
 __all__ = ['Classification', 'CorrectClassifications']
 
 
-class Classification(list[int | None]):
+class Classification(tuple[int | None]):
     """Classification data."""
 
 
-class CorrectClassifications(list[bool]):
+class CorrectClassifications(tuple[bool]):
     """Correct classifications."""

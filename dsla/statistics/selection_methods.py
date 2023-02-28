@@ -57,7 +57,7 @@ def selection_method_stats(
                 if run.selection_method is method
                 and task.dataset not in exclude_datasets
             )),
-            'precision': {
+            'precisions': {
                 clas: mean_precision(
                     [
                         precision
@@ -72,6 +72,18 @@ def selection_method_stats(
                     ]
                 ) for clas in range(3)
             },
+            'precision': mean_precision(
+                [
+                    precision
+                    for experiment in experiments
+                    for run in experiment.runs
+                    for task in run.tasks
+                    for clas_, precision in task.precisions
+                    if run.selection_method is method
+                    and task.dataset not in exclude_datasets
+                    and precision.positives > 0
+                ]
+            ),
             'correct_pct': correct / (correct + wrong),
             'datasets': {
                 dataset: {
@@ -109,7 +121,7 @@ def selection_method_stats(
                         if run.selection_method is method
                         and task.dataset is dataset
                     )),
-                    'precision': {
+                    'precisions': {
                         clas: mean_precision(
                             [
                                 precision
@@ -124,6 +136,18 @@ def selection_method_stats(
                             ]
                         ) for clas in range(3)
                     },
+                    'precision': mean_precision(
+                        [
+                            precision
+                            for experiment in experiments
+                            for run in experiment.runs
+                            for task in run.tasks
+                            for clas_, precision in task.precisions
+                            if run.selection_method is method
+                            and task.dataset is dataset
+                            and precision.positives > 0
+                        ]
+                    ),
                     'correct_pct': correct_dataset / (
                             correct_dataset + wrong_dataset
                     ),

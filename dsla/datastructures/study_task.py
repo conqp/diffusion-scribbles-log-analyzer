@@ -1,6 +1,7 @@
 """A study task with additional data."""
 
-from typing import Iterator, NamedTuple
+from functools import cache
+from typing import NamedTuple
 
 from dsla.datastructures.classification import Classification
 from dsla.datastructures.classification import CorrectClassifications
@@ -27,9 +28,18 @@ class StudyTask(NamedTuple):
         return self.events.dataset
 
     @property
-    def precisions(self) -> Iterator[tuple[int, Precision]]:
+    def precisions(self) -> list[tuple[int, Precision]]:
         """Returns the precisions for each class of this task."""
-        return Precision.from_classification(
-            self.classification,
-            self.dataset.solution
+        return cached_precisions(self)
+
+
+@cache
+def cached_precisions(study_task: StudyTask) -> list[tuple[int, Precision]]:
+    """Returns the precisions for each class of this task."""
+
+    return list(
+        Precision.from_classification(
+            study_task.classification,
+            study_task.dataset.solution
         )
+    )
