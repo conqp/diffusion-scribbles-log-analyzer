@@ -2,6 +2,8 @@
 
 from enum import Enum
 
+from dsla.solutions import SOLUTIONS
+
 
 __all__ = ['STUDY_DATASETS', 'Dataset']
 
@@ -21,6 +23,11 @@ class Dataset(str, Enum):
     AGGREGATION = '8_Aggregation'
     R15 = '10_R15'
     SIMPLIFIED_IRIS = '12_simplified.iris.data.set'
+
+    @property
+    def solution(self) -> list[int]:
+        """Solutions of this dataset."""
+        return SOLUTIONS[self.value]
 
 
 STUDY_DATASETS = {
