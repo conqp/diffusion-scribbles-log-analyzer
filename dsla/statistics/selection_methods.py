@@ -68,6 +68,7 @@ def selection_method_stats(
                         if run.selection_method is method
                         and task.dataset not in exclude_datasets
                         and clas_ == clas
+                        and precision.size > 0
                     ]
                 ) for clas in range(3)
             },
@@ -119,6 +120,7 @@ def selection_method_stats(
                                 if run.selection_method is method
                                 and task.dataset is dataset
                                 and clas_ == clas
+                                and precision.size > 0
                             ]
                         ) for clas in range(3)
                     },
@@ -158,20 +160,23 @@ def mean_summary(summaries: list[Summary]) -> dict[str, Any]:
     }
 
 
-def mean_precision(precisions: list[Precision]) -> dict[str, float]:
+def mean_precision(precisions: list[Precision]) -> dict[str, float] | None:
     """Return the mean precision."""
 
+    if not precisions:
+        return None
+
     return {
-        'true_positives': mean(
-            precision.true_positives for precision in precisions
+        'true_positives_pct': mean(
+            precision.true_positives_pct for precision in precisions
         ),
-        'false_positives': mean(
-            precision.false_positives for precision in precisions
+        'false_positives_pct': mean(
+            precision.false_positives_pct for precision in precisions
         ),
-        'true_negatives': mean(
-            precision.true_negatives for precision in precisions
+        'true_negatives_pct': mean(
+            precision.true_negatives_pct for precision in precisions
         ),
-        'false_negatives': mean(
-            precision.false_negatives for precision in precisions
+        'false_negatives_pct': mean(
+            precision.false_negatives_pct for precision in precisions
         )
     }
