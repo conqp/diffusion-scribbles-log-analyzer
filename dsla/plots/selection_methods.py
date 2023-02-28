@@ -87,7 +87,6 @@ def plot_per_class_accuracy(
     pyplot.show()
 
 
-
 def plot_average_duration(
         experiments: list[Experiment],
         key: str,
