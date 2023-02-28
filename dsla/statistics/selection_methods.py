@@ -68,7 +68,7 @@ def selection_method_stats(
                         if run.selection_method is method
                         and task.dataset not in exclude_datasets
                         and clas_ == clas
-                        and precision.size > 0
+                        and precision.positives > 0
                     ]
                 ) for clas in range(3)
             },
@@ -120,7 +120,7 @@ def selection_method_stats(
                                 if run.selection_method is method
                                 and task.dataset is dataset
                                 and clas_ == clas
-                                and precision.size > 0
+                                and precision.positives > 0
                             ]
                         ) for clas in range(3)
                     },

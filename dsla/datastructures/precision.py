@@ -12,7 +12,8 @@ __all__ = ['Precision']
 class Precision(NamedTuple):
     """Selection precisions."""
 
-    size: int
+    positives: int
+    negatives: int
     true_positives: int
     false_positives: int
     true_negatives: int
@@ -21,22 +22,22 @@ class Precision(NamedTuple):
     @property
     def true_positives_pct(self) -> float:
         """Return the percentage of true positives."""
-        return self.true_positives / self.size * 100
+        return self.true_positives / self.positives * 100
 
     @property
     def false_positives_pct(self) -> float:
         """Return the percentage of false positives."""
-        return self.false_positives / self.size * 100
+        return self.false_positives / self.negatives * 100
 
     @property
     def true_negatives_pct(self) -> float:
         """Return the percentage of true negatives."""
-        return self.true_negatives / self.size * 100
+        return self.true_negatives / self.negatives * 100
 
     @property
     def false_negatives_pct(self) -> float:
         """Return the percentage of true positives."""
-        return self.false_negatives / self.size * 100
+        return self.false_negatives / self.positives * 100
 
     @classmethod
     def from_classification(
@@ -67,6 +68,7 @@ class Precision(NamedTuple):
 
             yield clas, cls(
                 len([c for c in solution if c == clas]),
+                len([c for c in solution if c != clas]),
                 tp,
                 fp,
                 tn,
