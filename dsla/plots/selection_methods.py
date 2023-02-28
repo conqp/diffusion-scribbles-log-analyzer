@@ -6,7 +6,7 @@ from dsla.datastructures import Experiment
 from dsla.statistics import selection_method_stats
 
 
-__all__ = ['plot_average_correct', 'plot_average_durations']
+__all__ = ['plot_average_correct', 'plot_average_durations', 'plot_precisions']
 
 
 def plot_average_correct(
@@ -53,11 +53,11 @@ def plot_average_durations(
     plot_average_duration(experiments, key='task_duration', offset=offset)
 
 
-def plot_per_class_accuracy(
+def plot_precisions(
         experiments: list[Experiment],
         offset: int = -0.3
 ) -> None:
-    """Plot the average accuracy per brushing color."""
+    """Plot the average precision per selection method."""
 
     for index, (method, stats) in enumerate(
             selection_method_stats(experiments).items()
@@ -65,12 +65,9 @@ def plot_per_class_accuracy(
         x = []
         y = []
 
-        for clas, value in sorted(
-                stats['precision'].items(),
-                key=lambda item: int(item[0])
-        ):
-            x.append(str(clas))
-            y.append(value['correct_pct'] * 100)
+        for typ, value in stats['precision'].items():
+            x.append(' '.join(typ.split('_')[:2]))
+            y.append(value)
 
         pyplot.bar(
             [p + offset + index * 0.2 for p in range(len(x))],
@@ -79,10 +76,9 @@ def plot_per_class_accuracy(
             label=method.canonical_name
         )
 
-    pyplot.xticks(range(6), x)
-    pyplot.title('Correct selections')
-    pyplot.xlabel('Dataset')
-    pyplot.ylabel('Correct selections in %')
+    pyplot.xticks(range(4), x)
+    pyplot.title('Selection accuracy')
+    pyplot.ylabel('Amount in %')
     pyplot.legend(loc='center')
     pyplot.show()
 

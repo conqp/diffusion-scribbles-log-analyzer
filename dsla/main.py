@@ -10,6 +10,7 @@ from dsla.plots import plot_age_distribution
 from dsla.plots import plot_average_correct
 from dsla.plots import plot_average_durations
 from dsla.plots import plot_nasa_tlx
+from dsla.plots import plot_precisions
 from dsla.plots import plot_self_assessment_distribution
 from dsla.plots import plot_sus
 from dsla.reader import read
@@ -133,6 +134,7 @@ def main():
         if args.brushing_methods:
             plot_average_correct(experiments)
             plot_average_durations(experiments)
+            plot_precisions(experiments)
 
         if args.system_usability_scale:
             plot_sus(experiments)
