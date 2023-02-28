@@ -3,11 +3,13 @@
 from statistics import mean
 from typing import Any
 
+from dsla.datastructures import STUDY_DATASETS
 from dsla.datastructures import Dataset
 from dsla.datastructures import Experiment
-from dsla.datastructures import STUDY_DATASETS
+from dsla.datastructures import Precision
 from dsla.datastructures import SelectionMethod
 from dsla.datastructures import Summary
+
 
 __all__ = ['selection_method_stats']
 
@@ -55,6 +57,20 @@ def selection_method_stats(
                 if run.selection_method is method
                 and task.dataset not in exclude_datasets
             )),
+            'precision': {
+                clas: mean_precision(
+                    [
+                        precision
+                        for experiment in experiments
+                        for run in experiment.runs
+                        for task in run.tasks
+                        for clas_, precision in task.precisions
+                        if run.selection_method is method
+                        and task.dataset not in exclude_datasets
+                        and clas_ == clas
+                    ]
+                ) for clas in range(3)
+            },
             'correct_pct': correct / (correct + wrong),
             'datasets': {
                 dataset: {
@@ -92,6 +108,20 @@ def selection_method_stats(
                         if run.selection_method is method
                         and task.dataset is dataset
                     )),
+                    'precision': {
+                        clas: mean_precision(
+                            [
+                                precision
+                                for experiment in experiments
+                                for run in experiment.runs
+                                for task in run.tasks
+                                for clas_, precision in task.precisions
+                                if run.selection_method is method
+                                and task.dataset is dataset
+                                and clas_ == clas
+                            ]
+                        ) for clas in range(3)
+                    },
                     'correct_pct': correct_dataset / (
                             correct_dataset + wrong_dataset
                     ),
@@ -125,4 +155,23 @@ def mean_summary(summaries: list[Summary]) -> dict[str, Any]:
             summary.scribble_pixels for summary in summaries
         ),
         'eraser_count': mean(summary.eraser_count for summary in summaries),
+    }
+
+
+def mean_precision(precisions: list[Precision]) -> dict[str, float]:
+    """Return the mean precision."""
+
+    return {
+        'true_positives': mean(
+            precision.true_positives for precision in precisions
+        ),
+        'false_positives': mean(
+            precision.false_positives for precision in precisions
+        ),
+        'true_negatives': mean(
+            precision.true_negatives for precision in precisions
+        ),
+        'false_negatives': mean(
+            precision.false_negatives for precision in precisions
+        )
     }
