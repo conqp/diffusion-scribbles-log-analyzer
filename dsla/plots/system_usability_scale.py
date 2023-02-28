@@ -43,8 +43,11 @@ def plot_sus(experiments: list[Experiment], offset: float = -0.3) -> None:
         [
             f'{index} ({short_desc})'
             for index, short_desc in enumerate(STATEMENTS_SHORT, start=1)
-        ]
+        ],
+        rotation=-45,
+        ha='left'
     )
+    pyplot.subplots_adjust(bottom=0.27)
     pyplot.title('Average System Usability Scale results')
     pyplot.xlabel('Statement no.')
     pyplot.ylabel('Points (1-5)')
