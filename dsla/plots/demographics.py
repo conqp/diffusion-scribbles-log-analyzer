@@ -35,6 +35,7 @@ def plot_self_assessment_distribution(
         pyplot.bar(x, y, 0.2, label=key)
 
     pyplot.title("Participants' self-assessment")
+    pyplot.xlabel('Self-assessment score (1-5)')
     pyplot.ylabel('Amount of participants')
     pyplot.legend()
     pyplot.show()
