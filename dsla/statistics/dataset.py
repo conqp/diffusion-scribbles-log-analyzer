@@ -17,19 +17,17 @@ def per_experiment_dataset_stats(
 
     return [
         {
+            'dataset': dataset,
             'study': experiment.study.to_json(),
             'participant': experiment.participant.to_json(),
-            'runs': [
-                {
-                    'selection_method': run.selection_method,
-                    'tasks': [
-                        task.to_json()
-                        for task in run.tasks
-                        if task.dataset is dataset
-                    ]
-                }
+            'runs': {
+                run.selection_method: [
+                    task.correct_pct
+                    for task in run.tasks
+                    if task.dataset is dataset
+                ][0]
                 for run in experiment.runs
-            ]
+            }
         }
         for experiment in experiments
     ]
