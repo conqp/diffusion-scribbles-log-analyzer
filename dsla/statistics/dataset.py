@@ -25,7 +25,7 @@ def per_experiment_dataset_stats(
                     'tasks': [
                         task.to_json()
                         for task in run.tasks
-                        if task.dataset is dataset
+                        #if task.dataset is dataset
                     ]
                 }
                 for run in experiment.runs

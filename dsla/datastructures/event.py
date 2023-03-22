@@ -66,7 +66,7 @@ class StartAction(Event):
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
-            **super.to_json(),
+            **super().to_json(),
             'selection_method': self.selection_method,
             'dataset': self.dataset
         }
@@ -93,7 +93,7 @@ class ChangeMethod(Event):
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
-            **super.to_json(),
+            **super().to_json(),
             'new_method': self.new_method
         }
 
@@ -116,7 +116,7 @@ class DatasetLoaded(Event):
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
-            **super.to_json(),
+            **super().to_json(),
             'dataset': self.dataset
         }
 
@@ -134,7 +134,7 @@ class CoordinateEvent(Event):
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
-            **super.to_json(),
+            **super().to_json(),
             'coordinates': self.coordinates
         }
 
@@ -178,7 +178,7 @@ class ColorAction(Event):
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
-            **super.to_json(),
+            **super().to_json(),
             'number': self.number,
             'color': self.color,
             'action': self.action
@@ -234,7 +234,7 @@ class ChangeBrushSize(Event):
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
-            **super.to_json(),
+            **super().to_json(),
             'from': self.from_,
             'to': self.to
         }
