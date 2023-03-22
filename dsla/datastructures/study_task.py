@@ -32,13 +32,19 @@ class StudyTask(NamedTuple):
         """Returns the precisions for each class of this task."""
         return cached_precisions(self)
 
+    @property
+    def correct_pct(self) -> float:
+        """Percentage of correct classifications."""
+        return sum(self.correct) / len(self.correct) * 100
+
     def to_json(self) -> dict[str, Any]:
         """Return a JSON-ish dict."""
         return {
             'events': self.events.to_json(),
             'summary': self.summary.to_json(),
             'classification': self.classification,
-            'correct': self.correct
+            'correct': self.correct,
+            'correct_pct': self.correct_pct
         }
 
 
