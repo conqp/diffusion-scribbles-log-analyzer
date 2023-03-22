@@ -42,6 +42,16 @@ class SelectionMethodRun(NamedTuple):
             get_nasa_tlx(items)
         )
 
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'selection_method': self.selection_method,
+            'training': [task.to_json() for task in self.training],
+            'tasks': [task.to_json() for task in self.tasks],
+            'system_usability_scale': self.system_usability_scale.to_json(),
+            'nasa_tlx': self.nasa_tlx.to_json()
+        }
+
 
 def filter_training_tasks(items: list[Any]) -> Iterator[TrainingTask]:
     """Filter the training tasks."""

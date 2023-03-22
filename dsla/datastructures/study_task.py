@@ -1,7 +1,7 @@
 """A study task with additional data."""
 
 from functools import cache
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 from dsla.datastructures.classification import Classification
 from dsla.datastructures.classification import CorrectClassifications
@@ -31,6 +31,15 @@ class StudyTask(NamedTuple):
     def precisions(self) -> list[tuple[int, Precision]]:
         """Returns the precisions for each class of this task."""
         return cached_precisions(self)
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'events': self.events.to_json(),
+            'summary': self.summary.to_json(),
+            'classification': self.classification,
+            'correct': self.correct
+        }
 
 
 @cache

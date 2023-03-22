@@ -1,7 +1,7 @@
 """NASA TLX questionnaire."""
 
 from __future__ import annotations
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 
 __all__ = ['NASA_TLX', 'TLXAttributes']
@@ -36,6 +36,10 @@ class TLXAttributes(NamedTuple):
             int(frustration_level)
         )
 
+    def to_json(self) -> dict[str, int]:
+        """Return a JSON-ish dict."""
+        return self._asdict()
+
 
 class NASA_TLX(NamedTuple):
     """NASA TLX questionnaire."""
@@ -69,3 +73,11 @@ class NASA_TLX(NamedTuple):
             value * weighting * 5
             for value, weighting in zip(self.raw, weightings)
         ) / 15
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'raw': self.raw.to_json(),
+            'weighted': self.weighted.to_json(),
+            'score': self.score
+        }

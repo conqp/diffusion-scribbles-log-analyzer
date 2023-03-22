@@ -44,3 +44,17 @@ class Participant(NamedTuple):
             int(data_visualization_experience),
             int(scatter_plot_experience)
         )
+
+    def to_json(self) -> dict[str, bool | int | str]:
+        """Return a JSON-ish dict."""
+        return {
+            'age': self.age,
+            'gender': self.gender,
+            'corrected_vision': self.corrected_vision,
+            'normal_vision': self.normal_vision,
+            'computer_experience': self.computer_experience,
+            'data_visualization_experience':
+                self.data_visualization_experience,
+            'scatter_plot_experience': self.scatter_plot_experience,
+            'vision_ok': self.vision_ok
+        }

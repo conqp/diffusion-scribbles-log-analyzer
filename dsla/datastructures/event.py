@@ -37,6 +37,13 @@ class Event:
         """Set additional data fields."""
         return args
 
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'timestamp': self.timestamp.isoformat(),
+            'type': self.type
+        }
+
 
 @dataclass(frozen=True)
 class StartAction(Event):
@@ -55,6 +62,14 @@ class StartAction(Event):
             SelectionMethod.from_string(selection_method),
             Dataset(dataset)
         )
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            **super.to_json(),
+            'selection_method': self.selection_method,
+            'dataset': self.dataset
+        }
 
 
 @dataclass(frozen=True)
@@ -75,6 +90,13 @@ class ChangeMethod(Event):
     ) -> tuple[SelectionMethod]:
         return SelectionMethod.from_string(new_method),
 
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            **super.to_json(),
+            'new_method': self.new_method
+        }
+
 
 @dataclass(frozen=True)
 class Reset(Event):
@@ -91,6 +113,13 @@ class DatasetLoaded(Event):
     def parse_additional_fields(cls, dataset: str) -> tuple[Dataset]:
         return Dataset(dataset),
 
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            **super.to_json(),
+            'dataset': self.dataset
+        }
+
 
 @dataclass(frozen=True)
 class CoordinateEvent(Event):
@@ -101,6 +130,13 @@ class CoordinateEvent(Event):
     @classmethod
     def parse_additional_fields(cls, x: str, y: str) -> tuple[Coordinates]:
         return Coordinates.from_strings(x, y),
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            **super.to_json(),
+            'coordinates': self.coordinates
+        }
 
 
 @dataclass(frozen=True)
@@ -138,6 +174,15 @@ class ColorAction(Event):
             RGB.from_string(color),
             ColorChangeAction(action)
         )
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            **super.to_json(),
+            'number': self.number,
+            'color': self.color,
+            'action': self.action
+        }
 
 
 @dataclass(frozen=True)
@@ -185,6 +230,14 @@ class ChangeBrushSize(Event):
             to: str
     ) -> Iterable[Any]:
         return int(from_), int(to)
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            **super.to_json(),
+            'from': self.from_,
+            'to': self.to
+        }
 
 
 @dataclass(frozen=True)

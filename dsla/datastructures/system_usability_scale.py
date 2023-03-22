@@ -1,7 +1,7 @@
 """System usability scale questionnaire."""
 
 from __future__ import annotations
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 
 __all__ = ['SystemUsabilityScale', 'SUSAttributes']
@@ -71,3 +71,11 @@ class SystemUsabilityScale(NamedTuple):
             (5 - attribute) if index % 2 else (attribute - 1)
             for index, attribute in enumerate(self.questionnaire)
         ) * 2.5
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'questionnaire': self.questionnaire._asdict(),
+            'scores': self.scores._asdict(),
+            'pre_calculated_score': self.pre_calculated_score
+        }

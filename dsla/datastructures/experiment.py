@@ -51,6 +51,15 @@ class Experiment(NamedTuple):
             ))
         )
 
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'study': self.study.to_json(),
+            'participant': self.participant.to_json(),
+            'tlx_weights': self.tlx_weights.to_json(),
+            'runs': [run.to_json() for run in self.runs]
+        }
+
 
 def parse_selection_method_runs(
         items: Iterator[Any]

@@ -18,3 +18,7 @@ class Task(tuple[Event]):
                 return event.dataset
 
         raise ValueError('No dataset information available.')
+
+    def to_json(self) -> list[str]:
+        """Return a JSON-ish list."""
+        return [event.to_json() for event in self]

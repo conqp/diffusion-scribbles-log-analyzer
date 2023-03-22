@@ -22,3 +22,10 @@ class Study(NamedTuple):
             datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S'),
             participant_id
         )
+
+    def to_json(self) -> dict[str, str]:
+        """Return a JSON-ish dict."""
+        return {
+            'timestamp': self.timestamp.isoformat(),
+            'participant_id': self.participant_id
+        }

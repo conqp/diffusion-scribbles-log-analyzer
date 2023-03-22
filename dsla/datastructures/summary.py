@@ -3,7 +3,7 @@
 from __future__ import annotations
 from datetime import timedelta
 from re import findall
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 from dsla.datastructures.dataset import Dataset
 from dsla.datastructures.rgb import RGB
@@ -54,6 +54,23 @@ class Summary(NamedTuple):
             int(eraser_count),
             tuple(parse_classes(classes))
         )
+
+    def to_json(self) -> dict[str, Any]:
+        """Return a JSON-ish dict."""
+        return {
+            'method': self.method,
+            'dataset': self.dataset,
+            'task_duration': self.task_duration.total_seconds(),
+            'draw_duration': self.draw_duration.total_seconds(),
+            'invert_count': self.invert_count,
+            'undo_count': self.undo_count,
+            'redo_count': self.redo_count,
+            'reset_count': self.reset_count,
+            'scribble_count': self.scribble_count,
+            'scribble_pixels': self.scribble_pixels,
+            'eraser_count': self.eraser_count,
+            'classes': self.classes
+        }
 
 
 def parse_classes(text: str) -> list[RGB]:
