@@ -17,8 +17,8 @@ def per_experiment_dataset_stats(
 
     return [
         {
-            'study': experiment.study._asdict(),
-            'participant': experiment.participant._asdict(),
+            'study': experiment.study.to_json(),
+            'participant': experiment.participant.to_json(),
             'runs': [
                 {
                     'selection_method': run.selection_method,
