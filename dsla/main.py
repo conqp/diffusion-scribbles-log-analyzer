@@ -92,7 +92,10 @@ def main():
     if args.dataset:
         print(
             'Per-experiment dataset stats:',
-            dumps(per_experiment_dataset_stats(args.dataset, experiments))
+            dumps(
+                per_experiment_dataset_stats(args.dataset, experiments),
+                indent=2
+            )
         )
 
     if args.participants:
