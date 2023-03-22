@@ -43,7 +43,7 @@ def get_args(description: str = __doc__) -> Namespace:
         help='print demographic statistics'
     )
     parser.add_argument(
-        '-E', '--dataset', nargs=1, metavar='dataset', type=Dataset,
+        '-E', '--dataset', metavar='dataset', type=Dataset,
         help='print dataset statistics'
     )
     parser.add_argument(
