@@ -6,7 +6,33 @@ from typing import Any
 from dsla.datastructures import Dataset, Experiment, SelectionMethod
 from dsla.statistics.selection_methods import selection_method_stats
 
-__all__ = ['dataset_stats']
+__all__ = ['dataset_stats', 'per_experiment_dataset_stats']
+
+
+def per_experiment_dataset_stats(
+        dataset: Dataset,
+        experiments: list[Experiment]
+) -> list[dict[str, Any]]:
+    """Returns stats of the given dataset."""
+
+    return [
+        {
+            'study': experiment.study._asdict(),
+            'participant': experiment.participant._asdict(),
+            'runs': [
+                {
+                    'selection_method': run.selection_method,
+                    'tasks': [
+                        task.to_json()
+                        for task in run.tasks
+                        if task.dataset is dataset
+                    ]
+                }
+                for run in experiment.runs
+            ]
+        }
+        for experiment in experiments
+    ]
 
 
 def dataset_stats(

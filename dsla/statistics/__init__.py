@@ -1,6 +1,7 @@
 """Statistics calculation and plotting."""
 
 from dsla.statistics.dataset import dataset_stats
+from dsla.statistics.dataset import per_experiment_dataset_stats
 from dsla.statistics.demographics import age_distribution
 from dsla.statistics.demographics import average_demographics
 from dsla.statistics.demographics import self_assessment_distribution
@@ -16,6 +17,7 @@ __all__ = [
     'average_sus',
     'average_tlx',
     'dataset_stats',
+    'per_experiment_dataset_stats',
     'selection_method_stats',
     'self_assessment_distribution',
     'training_runs'

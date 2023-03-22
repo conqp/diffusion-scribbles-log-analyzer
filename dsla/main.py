@@ -18,6 +18,7 @@ from dsla.reader import read
 from dsla.statistics import average_demographics
 from dsla.statistics import average_sus
 from dsla.statistics import average_tlx
+from dsla.statistics import per_experiment_dataset_stats
 from dsla.statistics import selection_method_stats
 from dsla.statistics import self_assessment_distribution
 from dsla.statistics import training_runs
@@ -40,6 +41,10 @@ def get_args(description: str = __doc__) -> Namespace:
     parser.add_argument(
         '-D', '--demographics', action='store_true',
         help='print demographic statistics'
+    )
+    parser.add_argument(
+        '-E', '--dataset', nargs=1, metavar='dataset', type=Dataset,
+        help='print dataset statistics'
     )
     parser.add_argument(
         '-N', '--nasa-tlx', action='store_true',
@@ -83,6 +88,12 @@ def main():
             (Experiment.from_items(read(file)) for file in args.file)
         )
     )
+
+    if args.dataset:
+        print(
+            'Per-experiment dataset stats:',
+            dumps(per_experiment_dataset_stats(args.dataset, experiments))
+        )
 
     if args.participants:
         print('Participants:', len(experiments))
